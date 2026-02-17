@@ -2,155 +2,227 @@
 <html lang="he">
 <head>
 <meta charset="UTF-8">
-<title>בודק עוקצים בית"ר</title>
+<title>בודק עוקצים בית"ר | הרשימה השחורה</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQLFBE4FMZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QQLFBE4FMZ');
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
+  :root {
+    --beitar-yellow: #fce300;
+    --beitar-black: #121212;
+    --beitar-dark-gray: #1e1e1e;
+    --text-light: #e0e0e0;
+  }
+
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Heebo', sans-serif;
     direction: rtl;
     margin: 0;
     padding: 0;
-    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDgMC6dlXSTUjgFLWG7dez3-pFDUjMmpF6e2WTuhDQ0rcgc81FD7SBwDE&s=10') no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    overflow: hidden;
+    background-color: var(--beitar-black);
+    background-image: radial-gradient(circle at 2px 2px, #222 1px, transparent 0);
+    background-size: 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-light);
   }
 
-  .overlay {
-    background: rgba(255,255,255,0.85); /* יותר שקוף */
-    border: 2px solid black; /* מסגרת שחורה */
-    border-radius: 15px;
-    padding: 30px;
-    width: 90%;
-    max-width: 700px;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
+  .main-card {
+    background: var(--beitar-dark-gray);
+    width: 95%;
+    max-width: 550px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 600px;
+  }
+
+  .top-bar {
+    height: 8px;
+    background: linear-gradient(90deg, var(--beitar-yellow), #ffcc00, var(--beitar-yellow));
+  }
+
+  .header {
+    padding: 25px 20px 10px;
     text-align: center;
   }
 
   .header h1 {
-    font-size: 3em;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    border-bottom: 3px solid black;
-    padding-bottom: 10px;
+    font-size: 2.2em;
+    font-weight: 900;
+    margin: 0;
+    color: var(--beitar-yellow);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
 
-  .header p {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-
-  .important {
-    font-weight: bold;
-    text-decoration: underline;
-    color: #b30000;
-    font-size: 1.3em;
+  .warning-box {
+    background: rgba(255, 230, 0, 0.05);
+    border-right: 4px solid var(--beitar-yellow);
+    padding: 12px 15px;
+    margin: 10px 20px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    color: #ccc;
   }
 
   .chat-box {
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    max-height: 250px;
+    flex-grow: 1;
+    height: 300px;
     overflow-y: auto;
-    margin-top: 20px;
-    text-align: right;
-    direction: rtl;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px 18px;
+    border-radius: 18px;
+    max-width: 85%;
+    font-size: 1em;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease;
     white-space: pre-line;
   }
 
-  .user { background:#e0f7fa; text-align:left; }
-  .bot { background:#fff3e0; text-align:right; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    font-size: 1.2em;
-    border-radius: 5px;
-    border:1px solid #ccc;
-    box-sizing: border-box;
-  }
+  .user { background: #333; color: white; align-self: flex-start; border-bottom-right-radius: 4px; }
+  .bot { background: var(--beitar-yellow); color: black; align-self: flex-end; border-bottom-left-radius: 4px; font-weight: 700; }
 
-  button {
+  .copy-btn {
+    display: block;
     margin-top: 10px;
-    padding: 12px 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 5px;
-    border: none;
-    background-color: #ffa500;
+    padding: 8px 12px;
+    background: black;
+    color: var(--beitar-yellow);
+    border: 1px solid var(--beitar-yellow);
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
   }
 
-  button:hover {
-    background-color: #e69500;
+  .input-container {
+    padding: 15px;
+    background: #181818;
+    display: flex;
+    gap: 8px;
   }
 
-  @media screen and (max-width: 600px) {
-    .overlay {
-      width: 95%;
-      padding: 20px;
-    }
-    .header h1 {
-      font-size: 2.2em;
-    }
-    .header p, .important {
-      font-size: 1.1em;
-    }
-    input, button {
-      font-size: 1em;
-      padding: 10px;
-    }
-    .chat-box {
-      max-height: 200px;
-    }
+  input[type="text"], input[type="file"], textarea {
+    flex: 1;
+    background: #252525;
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    font-family: inherit;
+    outline: none;
   }
+
+  button#enterBtn, .submit-btn {
+    background: var(--beitar-yellow);
+    color: black;
+    border: none;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .actions {
+    padding: 15px;
+    text-align: center;
+    background: #111;
+    border-top: 1px solid #222;
+  }
+
+  .report-trigger {
+    color: #ff4444;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.95em;
+  }
+
+  /* דף דיווח */
+  #reportSection {
+    display: none;
+    padding: 25px;
+    background: var(--beitar-dark-gray);
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .report-form { display: flex; flex-direction: column; gap: 15px; }
+  .report-form label { font-weight: bold; color: var(--beitar-yellow); }
+  .close-btn { background: #444; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; width: fit-content; }
+  
+  .submit-btn { padding: 15px; font-size: 1.1em; margin-top: 10px; }
+
 </style>
 </head>
 <body>
 
-<div class="overlay">
-  <div class="header">
-    <h1>🖤 בודק עוקצים בית"ר 🕎 💛</h1>
+<div class="main-card">
+  <div class="top-bar"></div>
+  
+  <div id="mainSection" style="display: flex; flex-direction: column; height: 100%;">
+    <div class="header">
+      <h1>בודק עוקצים בית"ר</h1>
+    </div>
 
-    <p>אתר זה בודק אנשים שעוקצים אוהדי בית"ר ירושלים לפי מספר טלפון.<br>
-    כדי לבדוק אם המספר עוקץ שלחו אותו כאן, או שלחו "רשימה" כדי לראות את כל המספרים במאגר.</p>
+    <div class="warning-box">
+      <strong>חשוב:</strong> אם מספר לא נמצא במאגר, זה לא אומר שהוא בטוח. תמיד תהיו זהירים וחשדנים!
+    </div>
 
-    <p class="important">⚠️ שימו לב!!! אם מספר מופיע כ"לא נמצא במאגר" זה לא אומר שהוא לא עוקץ, אלא שהוא לא נמצא במאגר.</p>
+    <div class="chat-box" id="chatBox">
+      <div class="message bot">ברוכים הבאים למאגר העוקצים של אוהדי בית"ר. שלחו מספר לבדיקה או רשמו "רשימה".</div>
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="userInput" placeholder="הקלד מספר טלפון..." autocomplete="off">
+      <button id="enterBtn">בדוק</button>
+    </div>
+
+    <div class="actions">
+      <span class="report-trigger" onclick="toggleReport(true)">⚠️ דווח על עוקץ חדש (חובה הוכחות)</span>
+    </div>
   </div>
 
-  <div class="chat-box" id="chatBox"></div>
-
-  <input type="text" id="userInput" placeholder="הקלד מספר כאן...">
-  <button id="enterBtn">Enter</button>
+  <div id="reportSection">
+    <button class="close-btn" onclick="toggleReport(false)">✖ חזור לבדיקה</button>
+    <h2 style="color:var(--beitar-yellow); margin-top:0;">דיווח על עוקץ חדש</h2>
+    <p style="font-size: 0.9em; margin-bottom: 20px;">אנא מלא את פרטי העוקץ. חובה לצרף הוכחה (צילום מסך או סרטון) כדי שהמספר יכנס למאגר.</p>
+    
+    <form class="report-form" action="https://formspree.io/f/xdalzbze" method="POST" enctype="multipart/form-data">
+      <label>המספר של העוקץ:</label>
+      <input type="text" name="phone" placeholder="למשל 0501234567" required>
+      
+      <label>מה קרה? (תיאור קצר):</label>
+      <textarea name="message" rows="3" placeholder="תאר בקצרה איך הוא ניסה לעקוץ..." required></textarea>
+      
+      <label>צרף הוכחות (תמונות/סרטונים):</label>
+      <input type="file" name="upload" accept="image/*,video/*" required>
+      
+      <button type="submit" class="submit-btn">שלח דיווח ישירות למנהל</button>
+    </form>
+  </div>
 </div>
 
 <script>
-let phoneList = [
+// רשימת המספרים שלך
+const phoneList = [
 "0502015070","0502241616","0502281815","0502282961","0502544716","0502728991",
 "0503116296","0503121247","0503238108","0503253232","0503406577","0503468010",
 "0503885739","0504258932","0504781414","0504888884","0505291031","0505313057",
@@ -187,63 +259,60 @@ let phoneList = [
 "0585807028","0586202520","+447482874377","+639306739785"
 ];
 
-function cleanInput(input){
-  return input.replace(/[^\d+]/g,'');
-}
-
-function normalizeNumber(input){
-  let num = cleanInput(input);
-
-  if(num.startsWith("972")) num = "0" + num.slice(3);
-  if(num.startsWith("+972")) num = "0" + num.slice(4);
-
-  if(num.startsWith("0") && num.length === 10){
-    return {valid:true, number:num, country:"🇮🇱 ישראל"};
-  }
-
-  if(num.startsWith("44")) return {valid:true, number:"+"+num, country:"🇬🇧 בריטניה"};
-  if(num.startsWith("63")) return {valid:true, number:"+"+num, country:"🇵🇭 פיליפינים"};
-
-  return {valid:false};
-}
-
-function checkNumber(input){
-  let data = normalizeNumber(input);
-  if(!data.valid) return "❌ המספר שציינת אינו תקין";
-  let exists = phoneList.includes(data.number);
-  return `📞 מספר: ${data.number}\n🌍 מדינה: ${data.country}\n📌 תוצאה: ${exists ? "⚠️ עוקץ" : "✅ לא נמצא במאגר"}`;
-}
-
-function getList(){
-  return `📋 רשימת מספרים במאגר (סה"כ: ${phoneList.length} מספרים):\n` + phoneList.join("\n");
-}
-
 const chatBox = document.getElementById("chatBox");
-const input = document.getElementById("userInput");
-const enterBtn = document.getElementById("enterBtn");
 
-function addMessage(text, sender){
-  let div = document.createElement("div");
-  div.className = "message " + sender;
+function toggleReport(show) {
+    document.getElementById('reportSection').style.display = show ? 'block' : 'none';
+    document.getElementById('mainSection').style.display = show ? 'none' : 'block';
+}
+
+function copyList() {
+    navigator.clipboard.writeText(phoneList.join('\n')).then(() => alert("כל הרשימה הועתקה ללוח!"));
+}
+
+function addMessage(text, sender, showCopy = false) {
+  const div = document.createElement("div");
+  div.className = `message ${sender}`;
   div.innerText = text;
+  
+  if(showCopy) {
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.innerText = "📋 העתק את כל הרשימה";
+      btn.onclick = copyList;
+      div.appendChild(btn);
+  }
+  
   chatBox.appendChild(div);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function handleInput(){
-  let val = input.value.trim();
+function handleInput() {
+  const input = document.getElementById("userInput");
+  const val = input.value.trim();
   if(!val) return;
-  addMessage(val,"user");
-  let response = val === "רשימה" ? getList() : checkNumber(val);
-  addMessage(response,"bot");
-  input.value="";
+  
+  addMessage(val, "user");
+
+  if(val === "רשימה") {
+    addMessage(`📋 רשימת המספרים המלאה (${phoneList.length} מספרים):\n\n${phoneList.join('\n')}`, "bot", true);
+  } else {
+    // נורמליזציה קלה למספר (רק ספרות ופלוס)
+    const cleanNum = val.replace(/[^\d+]/g, '');
+    const isScam = phoneList.includes(cleanNum);
+    
+    if(isScam) {
+        addMessage(`⚠️ זהירות! המספר נמצא במאגר כעוקץ מוכר! להתרחק ולא לשלוח כסף!`, "bot");
+    } else {
+        addMessage(`🔍 המספר לא נמצא במאגר.\nשימו לב: זה לא אומר שהוא בטוח! תמיד תהיו זהירים וחשדנים. אם נעקצתם, דווחו לנו למטה.`, "bot");
+    }
+  }
+  input.value = "";
 }
 
-input.addEventListener("keydown", function(e){
-  if(e.key === "Enter") handleInput();
-});
-enterBtn.addEventListener("click", handleInput);
+document.getElementById("enterBtn").onclick = handleInput;
+document.getElementById("userInput").onkeypress = (e) => { if(e.key === 'Enter') handleInput(); };
 </script>
 
 </body>
-  </html>
+        </html>
