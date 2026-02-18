@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
-<meta charset="UTF-8">
-<title>בודק עוקצים בית"ר | הרשימה השחורה</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QQLFBE4FMZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QQLFBE4FMZ');
+</script>
 
+<meta charset="UTF-8">
+<title>בודק עוקצים בית"ר | מאגר רשמי</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
@@ -19,10 +26,7 @@
     font-family: 'Heebo', sans-serif;
     direction: rtl;
     margin: 0;
-    padding: 0;
     background-color: var(--beitar-black);
-    background-image: radial-gradient(circle at 2px 2px, #222 1px, transparent 0);
-    background-size: 40px 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +37,8 @@
   .main-card {
     background: var(--beitar-dark-gray);
     width: 95%;
-    max-width: 550px;
+    max-width: 600px;
+    height: 800px; 
     border-radius: 20px;
     border: 1px solid #333;
     box-shadow: 0 20px 50px rgba(0,0,0,0.6);
@@ -41,60 +46,18 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: 600px;
   }
 
-  .top-bar {
-    height: 8px;
-    background: linear-gradient(90deg, var(--beitar-yellow), #ffcc00, var(--beitar-yellow));
-  }
+  .top-bar { height: 8px; background: linear-gradient(90deg, var(--beitar-yellow), #ffcc00, var(--beitar-yellow)); }
 
-  .header {
-    padding: 25px 20px 10px;
-    text-align: center;
-  }
+  .header { padding: 20px; text-align: center; }
+  .header h1 { font-size: 2.2em; font-weight: 900; margin: 0; color: var(--beitar-yellow); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 
-  .header h1 {
-    font-size: 2.2em;
-    font-weight: 900;
-    margin: 0;
-    color: var(--beitar-yellow);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  }
+  #mainSection { display: flex; flex-direction: column; height: 100%; }
 
-  .warning-box {
-    background: rgba(255, 230, 0, 0.05);
-    border-right: 4px solid var(--beitar-yellow);
-    padding: 12px 15px;
-    margin: 10px 20px;
-    font-size: 0.9em;
-    border-radius: 4px;
-    color: #ccc;
-  }
+  .chat-box { flex-grow: 1; overflow-y: auto; padding: 20px; background: rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 12px; }
 
-  .chat-box {
-    flex-grow: 1;
-    height: 300px;
-    overflow-y: auto;
-    padding: 20px;
-    background: rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .message {
-    padding: 12px 18px;
-    border-radius: 18px;
-    max-width: 85%;
-    font-size: 1em;
-    line-height: 1.4;
-    animation: fadeIn 0.3s ease;
-    white-space: pre-line;
-  }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+  .message { padding: 12px 18px; border-radius: 18px; max-width: 85%; font-size: 1em; animation: fadeIn 0.3s ease; white-space: pre-line; }
   .user { background: #333; color: white; align-self: flex-start; border-bottom-right-radius: 4px; }
   .bot { background: var(--beitar-yellow); color: black; align-self: flex-end; border-bottom-left-radius: 4px; font-weight: 700; }
 
@@ -111,65 +74,30 @@
     font-family: inherit;
   }
 
-  .input-container {
-    padding: 15px;
-    background: #181818;
-    display: flex;
-    gap: 8px;
-  }
-
-  input[type="text"], input[type="file"], textarea {
-    flex: 1;
-    background: #252525;
-    border: 1px solid #444;
-    padding: 12px;
-    border-radius: 10px;
-    color: white;
-    font-family: inherit;
-    outline: none;
-  }
-
-  button#enterBtn, .submit-btn {
-    background: var(--beitar-yellow);
-    color: black;
-    border: none;
-    padding: 0 20px;
-    border-radius: 10px;
-    font-weight: 900;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  .actions {
-    padding: 15px;
-    text-align: center;
-    background: #111;
-    border-top: 1px solid #222;
-  }
-
-  .report-trigger {
-    color: #ff4444;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 0.95em;
-  }
-
-  /* דף דיווח */
-  #reportSection {
-    display: none;
-    padding: 25px;
-    background: var(--beitar-dark-gray);
-    height: 100%;
-    overflow-y: auto;
-  }
-
-  .report-form { display: flex; flex-direction: column; gap: 15px; }
-  .report-form label { font-weight: bold; color: var(--beitar-yellow); }
-  .close-btn { background: #444; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; width: fit-content; }
+  .input-container { padding: 15px; background: #181818; display: flex; gap: 8px; }
+  input { flex: 1; background: #252525; border: 1px solid #444; padding: 12px; border-radius: 10px; color: white; outline: none; font-family: inherit; }
   
-  .submit-btn { padding: 15px; font-size: 1.1em; margin-top: 10px; }
+  button#enterBtn { background: var(--beitar-yellow); color: black; border: none; padding: 0 20px; border-radius: 10px; font-weight: 900; cursor: pointer; font-family: inherit; }
 
+  .actions { padding: 15px; text-align: center; background: #111; border-top: 1px solid #222; }
+  .report-trigger { color: #ff4444; font-weight: bold; cursor: pointer; text-decoration: underline; }
+
+  #reportSection { display: none; height: 100%; background: #f0f0f0; }
+  iframe { width: 100%; height: calc(100% - 50px); border: none; }
+
+  .back-btn {
+    background: var(--beitar-black);
+    color: var(--beitar-yellow);
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 3px solid var(--beitar-yellow);
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .chat-box::-webkit-scrollbar { width: 5px; }
+  .chat-box::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
 </style>
 </head>
 <body>
@@ -177,89 +105,28 @@
 <div class="main-card">
   <div class="top-bar"></div>
   
-  <div id="mainSection" style="display: flex; flex-direction: column; height: 100%;">
-    <div class="header">
-      <h1>בודק עוקצים בית"ר</h1>
-    </div>
-
-    <div class="warning-box">
-      <strong>חשוב:</strong> אם מספר לא נמצא במאגר, זה לא אומר שהוא בטוח. תמיד תהיו זהירים וחשדנים!
-    </div>
-
+  <div id="mainSection">
+    <div class="header"><h1>בודק עוקצים בית"ר</h1></div>
     <div class="chat-box" id="chatBox">
-      <div class="message bot">ברוכים הבאים למאגר העוקצים של אוהדי בית"ר. שלחו מספר לבדיקה או רשמו "רשימה".</div>
+      <div class="message bot">ברוכים הבאים למאגר העוקצים הרשמי. שלחו מספר טלפון לבדיקה או רשמו "רשימה".חשוב: אם מספר לא נמצא, זה לא אומר שהוא בטוח - תמיד תהיו זהירים!</div>
     </div>
-
     <div class="input-container">
       <input type="text" id="userInput" placeholder="הקלד מספר טלפון..." autocomplete="off">
       <button id="enterBtn">בדוק</button>
     </div>
-
     <div class="actions">
-      <span class="report-trigger" onclick="toggleReport(true)">⚠️ דווח על עוקץ חדש (חובה הוכחות)</span>
+      <span class="report-trigger" onclick="toggleReport(true)">⚠️ דווח על עוקץ חדש (העלאת הוכחות)</span>
     </div>
   </div>
 
   <div id="reportSection">
-    <button class="close-btn" onclick="toggleReport(false)">✖ חזור לבדיקה</button>
-    <h2 style="color:var(--beitar-yellow); margin-top:0;">דיווח על עוקץ חדש</h2>
-    <p style="font-size: 0.9em; margin-bottom: 20px;">אנא מלא את פרטי העוקץ. חובה לצרף הוכחה (צילום מסך או סרטון) כדי שהמספר יכנס למאגר.</p>
-    
-    <form class="report-form" action="https://formspree.io/f/xdalzbze" method="POST" enctype="multipart/form-data">
-      <label>המספר של העוקץ:</label>
-      <input type="text" name="phone" placeholder="למשל 0501234567" required>
-      
-      <label>מה קרה? (תיאור קצר):</label>
-      <textarea name="message" rows="3" placeholder="תאר בקצרה איך הוא ניסה לעקוץ..." required></textarea>
-      
-      <label>צרף הוכחות (תמונות/סרטונים):</label>
-      <input type="file" name="upload" accept="image/*,video/*" required>
-      
-      <button type="submit" class="submit-btn">שלח דיווח ישירות למנהל</button>
-    </form>
+    <div class="back-btn" onclick="toggleReport(false)">✖ חזור למסך הבדיקה</div>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd-IDkaGSpzk8f5Vw1e8QhiFo_kBs7ID_ojhpdYoVLyT-rvpw/viewform?embedded=true">טוען...</iframe>
   </div>
 </div>
 
 <script>
-// רשימת המספרים שלך
-const phoneList = [
-"0502015070","0502241616","0502281815","0502282961","0502544716","0502728991",
-"0503116296","0503121247","0503238108","0503253232","0503406577","0503468010",
-"0503885739","0504258932","0504781414","0504888884","0505291031","0505313057",
-"0505704377","0506000178","0506447414","0506558175","0506592474","0506599395",
-"0506699657","0506856767","0507220145","0507303876","0507472051","0507498365",
-"0507759995","0508181332","0508182331","0508392008","0508575715","0508673444",
-"0508783462","0508941888","0509035330","0509437680","0509437940","0509520488",
-"0509579758","0509836595","0509841329","0515003585","0522537628","0523181029",
-"0523266921","0523476332","0523612753","0523615374","0523616224","0523793429",
-"0523915108","0523915180","0523943423","0524139360","0524144262","0524300877",
-"0524438889","0524452494","0524457320","0524771365","0524865153","0525126128",
-"0525262120","0525355471","0525385554","0525602569","0525617913","0525659061",
-"0525840166","0525853391","0525854678","0525949175","0526483521","0526548904",
-"0526922324","0527331413","0527921236","0527921506","0528030856","0528255920",
-"0528412782","0528648735","0528944716","0529323402","0529323881","0529608474",
-"0532339026","0532408118","0533038606","0533313144","0534215910","0534254657",
-"0534377745","0534580001","0535414742","0535471419","0537004627","0538898813",
-"0539195213","0539213828","0539725977","0539932776","0539985800","0542066556",
-"0542159138","0542203465","0542249175","0542694767","0542697803","0543542493",
-"0544224250","0544300089","0544308925","0544376924","0544601861","0544728045",
-"0544970382","0544977022","0545225639","0545639522","0545858916","0546180171",
-"0546249483","0546251061","0546359919","0546711494","0546822420","0546854785",
-"0546954977","0546990756","0546993429","0547151575","0547274334","0547291887",
-"0547346420","0547443415","0547555154","0547709761","0547834948","0547868850",
-"0548232494","0548232502","0548232598","0548244745","0548301208","0548931210",
-"0549012423","0549054784","0549129986","0549153899","0549259050","0549319153",
-"0549850511","0550903533","0552400877","0552401230","0552430087","0552467856",
-"0552637788","0552674967","0552733141","0552916856","0553188788","0553303860",
-"0553993277","0554269780","0554699075","0555606845","0556645939","0556654975",
-"0556669436","0556854421","0557041287","0557049497","0557053630","0557227383",
-"0557239960","0557242811","0557247944","0557250389","0557298419","0557774363",
-"0559256947","0559266317","0559431224","0559465904","0559556931","0559610748",
-"0559728523","0559831962","0559844585","0559871650","0584628466","0585088502",
-"0585807028","0586202520","+447482874377","+639306739785"
-];
-
-const chatBox = document.getElementById("chatBox");
+const phoneList = ["0502015070","0502241616","0502281815","0502282961","0502544716","0502728991","0503116296","0503121247","0503238108","0503253232","0503406577","0503468010","0503885739","0504258932","0504781414","0504888884","0505291031","0505313057","0505704377","0506000178","0506447414","0506558175","0506592474","0506599395","0506699657","0506856767","0507220145","0507303876","0507472051","0507498365","0507759995","0508181332","0508182331","0508392008","0508575715","0508673444","0508783462","0508941888","0509035330","0509437680","0509437940","0509520488","0509579758","0509836595","0509841329","0515003585","0522537628","0523181029","0523266921","0523476332","0523612753","0523615374","0523616224","0523793429","0523915108","0523915180","0523943423","0524139360","0524144262","0524300877","0524438889","0524452494","0524457320","0524771365","0524865153","0525126128","0525262120","0525355471","0525385554","0525602569","0525617913","0525659061","0525840166","0525853391","0525854678","0525949175","0526483521","0526548904","0526922324","0527331413","0527921236","0527921506","0528030856","0528255920","0528412782","0528648735","0528944716","0529323402","0529323881","0529608474","0532339026","0532408118","0533038606","0533313144","0534215910","0534254657","0534377745","0534580001","0535414742","0535471419","0537004627","0538898813","0539195213","0539213828","0539725977","0539932776","0539985800","0542066556","0542159138","0542203465","0542249175","0542694767","0542697803","0543542493","0544224250","0544300089","0544308925","0544376924","0544601861","0544728045","0544970382","0544977022","0545225639","0545639522","0545858916","0546180171","0546249483","0546251061","0546359919","0546711494","0546822420","0546854785","0546954977","0546990756","0546993429","0547151575","0547274334","0547291887","0547346420","0547443415","0547555154","0547709761","0547834948","0547868850","0548232494","0548232502","0548232598","0548244745","0548301208","0548931210","0549012423","0549054784","0549129986","0549153899","0549259050","0549319153","0549850511","0550903533","0552400877","0552401230","0552430087","0552467856","0552637788","0552674967","0552733141","0552916856","0553188788","0553303860","0553993277","0554269780","0554699075","0555606845","0556645939","0556654975","0556669436","0556854421","0557041287","0557049497","0557053630","0557227383","0557239960","0557242811","0557247944","0557250389","0557298419","0557774363","0559256947","0559266317","0559431224","0559465904","0559556931","0559610748","0559728523","0559831962","0559844585","0559871650","0584628466","0585088502","0585807028","0586202520","+447482874377","+639306739785"];
 
 function toggleReport(show) {
     document.getElementById('reportSection').style.display = show ? 'block' : 'none';
@@ -267,44 +134,40 @@ function toggleReport(show) {
 }
 
 function copyList() {
-    navigator.clipboard.writeText(phoneList.join('\n')).then(() => alert("כל הרשימה הועתקה ללוח!"));
+    navigator.clipboard.writeText(phoneList.join('\n')).then(() => alert("הרשימה הועתקה!"));
 }
 
 function addMessage(text, sender, showCopy = false) {
   const div = document.createElement("div");
   div.className = `message ${sender}`;
   div.innerText = text;
-  
   if(showCopy) {
       const btn = document.createElement("button");
       btn.className = "copy-btn";
-      btn.innerText = "📋 העתק את כל הרשימה";
+      btn.innerText = "📋 העתק הכל";
       btn.onclick = copyList;
       div.appendChild(btn);
   }
-  
-  chatBox.appendChild(div);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  const cb = document.getElementById("chatBox");
+  cb.appendChild(div);
+  cb.scrollTop = cb.scrollHeight;
 }
 
 function handleInput() {
   const input = document.getElementById("userInput");
   const val = input.value.trim();
   if(!val) return;
-  
   addMessage(val, "user");
 
   if(val === "רשימה") {
-    addMessage(`📋 רשימת המספרים המלאה (${phoneList.length} מספרים):\n\n${phoneList.join('\n')}`, "bot", true);
+    addMessage(`📋 מאגר המספרים המלא:\n\n${phoneList.join('\n')}`, "bot", true);
   } else {
-    // נורמליזציה קלה למספר (רק ספרות ופלוס)
     const cleanNum = val.replace(/[^\d+]/g, '');
     const isScam = phoneList.includes(cleanNum);
-    
     if(isScam) {
-        addMessage(`⚠️ זהירות! המספר נמצא במאגר כעוקץ מוכר! להתרחק ולא לשלוח כסף!`, "bot");
+        addMessage("⚠️ זהירות! המספר נמצא במאגר!", "bot");
     } else {
-        addMessage(`🔍 המספר לא נמצא במאגר.\nשימו לב: זה לא אומר שהוא בטוח! תמיד תהיו זהירים וחשדנים. אם נעקצתם, דווחו לנו למטה.`, "bot");
+        addMessage("🔍 המספר לא נמצא במאגר.\n\nחשוב: לא בטוח שהוא תקין! תמיד תהיו זהירים.", "bot");
     }
   }
   input.value = "";
@@ -315,4 +178,4 @@ document.getElementById("userInput").onkeypress = (e) => { if(e.key === 'Enter')
 </script>
 
 </body>
-        </html>
+</html>
