@@ -64,7 +64,6 @@
   .user { background: #333; color: white; align-self: flex-start; border-bottom-right-radius: 4px; }
   .bot { background: var(--beitar-yellow); color: black; align-self: flex-end; border-bottom-left-radius: 4px; font-weight: 700; }
   
-  /* עיצוב להדגשת המספרים שנמצאו */
   .highlight-match {
     background-color: black;
     color: var(--beitar-yellow);
@@ -166,30 +165,38 @@ function handleInput() {
   if(val === "רשימה") {
     addMessage(`📋 מאגר המספרים המלא (${phoneList.length}):\n\n${phoneList.join('\n')}`, "bot", true);
   } else {
-    // ניקוי המספר
-    const cleanNum = val.replace(/[^\d+]/g, '');
+    
+    // --- לוגיקת נרמול מספרים ---
+    // 1. הסרת מקפים ורווחים
+    let normalized = val.replace(/[-\s]/g, ''); 
+    
+    // 2. טיפול בקידומת בינלאומית ישראלית
+    if (normalized.startsWith('+972')) {
+        normalized = '0' + normalized.slice(4);
+    } else if (normalized.startsWith('972') && normalized.length >= 12) {
+        normalized = '0' + normalized.slice(3);
+    }
+    
+    // 3. השארת ספרות וסימן פלוס בלבד (למקרה של מספרים מחו"ל)
+    const cleanNum = normalized.replace(/[^\d+]/g, '');
 
-    // בדיקה: מינימום 3 ספרות
     if (cleanNum.length < 3) {
         addMessage("⚠️ החיפוש קצר מדי.\nחובה להזין לפחות 3 ספרות.", "bot");
     } 
-    // הוספת התנאי למקרה שהמספר נמצא במלואו במאגר
     else if (phoneList.includes(cleanNum)) {
         addMessage(`המספר ${cleanNum} עוקץ ⚠️`, "bot");
     } 
-    // חיפוש חלקי (מספרים שמכילים את הקלט)
     else {
         const matches = phoneList.filter(phone => phone.includes(cleanNum));
 
         if(matches.length > 0) {
-            // בניית רשימת תוצאות עם הדגשה
             const resultsHTML = matches.map(phone => {
                 return phone.split(cleanNum).join(`<span class="highlight-match">${cleanNum}</span>`);
             }).join('<br>');
             
             addMessage(`🚨 נמצאו ${matches.length} התאמות במאגר:\n\n${resultsHTML}`, "bot");
         } else {
-            addMessage("🔍 המספר לא נמצא במאגר.\n\nחשוב: לא בטוח שהוא אמין! תמיד תהיו זהירים.", "bot");
+            addMessage("🔍 המספר לא נמצא במאגר.\n\nחשוב לזכור: לא בטוח שהוא אמין! תמיד תהיו זהירים.", "bot");
         }
     }
   }
@@ -202,4 +209,3 @@ document.getElementById("userInput").onkeypress = (e) => { if(e.key === 'Enter')
 
 </body>
 </html>
- 
