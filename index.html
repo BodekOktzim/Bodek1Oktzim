@@ -35,12 +35,25 @@ body {
   color:var(--text-light);
 } 
 
-/* Main Card - נשאר רחב */
+/* Splash */
+#splashScreen{
+  position:fixed; inset:0;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  background:#121212; z-index:9999; transition:opacity 0.6s;
+}
+#splashScreen img{ width:140px; margin-bottom:20px; animation:logoPop 0.8s ease;}
+.loader{
+  width:45px; height:45px; border:4px solid rgba(252,227,0,0.2);
+  border-top:4px solid var(--beitar-yellow);
+  border-radius:50%; animation:spin 1s linear infinite;
+}
+@keyframes logoPop{0%{transform:scale(0.7);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}} 
+
+/* Main Card - הורחב ל-900 פיקסלים לקריאה נוחה יותר */
 .main-card{
   background: rgba(18,18,18,0.9);
-  width: 98%; 
-  max-width: none; 
-  height: 90vh; 
+  width: 95%; max-width:900px; height:85vh;
   border-radius:22px; overflow:hidden;
   display:flex; flex-direction:column;
   box-shadow:0 20px 50px var(--shadow-dark);
@@ -60,7 +73,7 @@ body {
 /* Header */
 .header{ padding:20px; text-align:center; }
 .header h1{
-  font-size:2.5em; font-weight:900;
+  font-size:2.3em; font-weight:900;
   color:var(--beitar-yellow);
   text-shadow:0 0 10px var(--beitar-yellow), 0 0 20px rgba(252,227,0,0.3);
 } 
@@ -68,17 +81,12 @@ body {
 /* Chat */
 #mainSection{ display:flex; flex-direction:column; height:100%; }
 .chat-box{ flex-grow:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:14px; }
-
-/* תיקון בועות ההודעה - רוחב מותאם לתוכן */
 .message{
-  padding:15px 25px; border-radius:20px; 
-  width: fit-content; /* הבועה תתכווץ לפי אורך הטקסט */
-  max-width: 80%;    /* אבל לא תעבור את ה-80% מהמסך */
-  font-size:1.15em; white-space:pre-line; word-break:break-word;
+  padding:12px 18px; border-radius:20px; max-width:90%;
+  font-size:1.1em; white-space:pre-line; word-break:break-word;
   box-shadow:0 5px 20px rgba(0,0,0,0.5);
   opacity:0; transform:translateY(20px) scale(0.95); animation:messagePop 0.35s forwards;
 }
-
 @keyframes messagePop{
   0%{opacity:0; transform:translateY(20px) scale(0.95);}
   70%{opacity:1; transform:translateY(-3px) scale(1.02);}
@@ -91,24 +99,24 @@ body {
 .highlight-match{ background:black; color:var(--beitar-yellow); padding:0 4px; border-radius:4px; } 
 
 .copy-btn{
-  display:inline-block; margin-top:12px; padding:10px 20px; font-size:0.95em;
+  display:block; margin-top:12px; padding:8px 16px; font-size:0.9em;
   background:black; color:var(--beitar-yellow); border:1px solid var(--beitar-yellow);
   border-radius:8px; cursor:pointer; font-weight:bold; transition:0.25s, transform 0.2s;
 }
 .copy-btn:hover{ transform:translateY(-2px) scale(1.05); box-shadow:0 6px 18px rgba(252,227,0,0.4); } 
 
-.input-container{ padding:20px; background:rgba(0,0,0,0.6); display:flex; gap:10px; }
-input{ flex:1; background:#252525; border:1px solid #444; padding:15px; border-radius:12px; color:white; outline:none; font-family:inherit; transition:0.3s; font-size: 1.1rem; }
+.input-container{ padding:15px; background:rgba(0,0,0,0.6); display:flex; gap:10px; }
+input{ flex:1; background:#252525; border:1px solid #444; padding:12px; border-radius:12px; color:white; outline:none; font-family:inherit; transition:0.3s; font-size: 1rem; }
 input:focus{ border-color: var(--beitar-yellow); box-shadow:0 0 12px rgba(252,227,0,0.4);}
 button#enterBtn{
-  background:var(--beitar-yellow); color:black; border:none; padding:0 35px; border-radius:12px; font-weight:900; cursor:pointer;
-  font-family:inherit; transition:0.25s; font-size: 1.1rem;
+  background:var(--beitar-yellow); color:black; border:none; padding:0 25px; border-radius:12px; font-weight:900; cursor:pointer;
+  font-family:inherit; transition:0.25s; font-size: 1rem;
 }
 button#enterBtn:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 10px 25px rgba(252,227,0,0.5); } 
 
 /* Actions */
 .actions{ padding:15px; display:flex; justify-content:space-around; align-items:center; background:rgba(0,0,0,0.6); border-top:1px solid #333;}
-.action-btn{ font-weight:bold; cursor:pointer; font-size:1.1em; display:flex; align-items:center; gap:5px; transition:0.2s; }
+.action-btn{ font-weight:bold; cursor:pointer; font-size:1em; display:flex; align-items:center; gap:5px; transition:0.2s; }
 .action-btn:hover{ transform:scale(1.05);}
 .report-trigger{ color:#ff4444; text-decoration:underline; }
 .share-trigger{ color:var(--beitar-yellow); } 
@@ -195,7 +203,7 @@ async function handleInput(){
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       addMessage("📊 מאגר מספרי העוקץ ("+phoneList.length+"):\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
+       addMessage("📊 **מאגר מספרי העוקץ ("+phoneList.length+"):**\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
     }
   }
   else{
@@ -208,10 +216,12 @@ async function handleInput(){
       addMessage("⚠️ החיפוש קצר מדי.","bot");
     }
     else {
+      // בדיקה להתאמה מדויקת במספר מלא
       if(cleanNum.length >= 10 && phoneList.includes(cleanNum)) {
          addMessage(`המספר ${cleanNum} עוקץ ⚠️`, "bot");
       } 
       else {
+        // חיפוש חלקי
         const matchesScam = phoneList.filter(p => p.includes(cleanNum));
         if(matchesScam.length > 0){ 
           let resultsHTML = `🚨 נמצאו התאמות עבור "${cleanNum}":\n\n`; 
