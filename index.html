@@ -135,7 +135,7 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; }
     <div class="header"><h1>בודק עוקצים בית"ר</h1></div>
     <div class="chat-box" id="chatBox">
       <div class="message bot welcome-msg">
-ברוכים הבאים למאגר העוקצים הרשמי. 
+<h1>ברוכים הבאים למאגר העוקצים הרשמי</h1>
 • שלחו מספר טלפון או חלק ממנו (מינימום 3 ספרות) לבדיקה🔍 
 • כתבו "רשימה" כדי לקבל את כל המספרים במאגר📋
 • תמיד תזכרו שגם אם מספר כלשהו לא נמצא במאגר זה לא אומר שהוא אמין תמיד תהיו זהירים❗️
@@ -194,7 +194,7 @@ async function handleInput(){
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       addMessage("📊 **מאגר מספרי העוקץ ("+phoneList.length+"):**\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
+       addMessage("📊 מאגר מספרי העוקץ ("+phoneList.length+"):\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
     }
   }
   else{
