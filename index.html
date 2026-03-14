@@ -204,7 +204,7 @@ async function handleInput(){
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       addMessage("📊 **מאגר מספרי העוקץ ("+phoneList.length+"):**\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
+       addMessage("📊 מאגר מספרי העוקץ ("+phoneList.length+"):\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
     }
   }
   else{
