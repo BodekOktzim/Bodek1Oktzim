@@ -174,8 +174,9 @@ async function loadDatabase() {
   try {
     const response = await fetch(sheetURL);
     const data = await response.text();
+    // התיקון כאן: הוספתי החלפה של פסיקים ברווח ריק
     phoneList = data.split(/\r?\n/)
-                   .map(num => num.replace(/"/g, "").trim())
+                   .map(num => num.replace(/[",]/g, "").trim())
                    .filter(num => num.length >= 3);
   } catch (error) {
     console.error("Error loading database:", error);
@@ -203,7 +204,6 @@ async function handleInput(){
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       // שיניתי כאן מ-100 ל-5000 כדי שיציג את כל הרשימה
        addMessage("📊 **מאגר מספרי העוקץ ("+phoneList.length+"):**\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
     }
   }
