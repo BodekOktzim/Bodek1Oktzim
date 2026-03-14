@@ -167,7 +167,6 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; }
 </div> 
 
 <script>
-// --- חיבור למאגר בגוגל שיטס ---
 const sheetURL = 'https://docs.google.com/spreadsheets/d/18RfRhdFg1m_lNZecRXl9rLwaxRto_VtlkDjjI5B2gL4/gviz/tq?tqx=out:csv';
 let phoneList = []; 
 
@@ -175,13 +174,11 @@ async function loadDatabase() {
   try {
     const response = await fetch(sheetURL);
     const data = await response.text();
-    // מנקה את הנתונים והופך לרשימה
     phoneList = data.split(/\r?\n/)
                    .map(num => num.replace(/"/g, "").trim())
                    .filter(num => num.length >= 3);
-    console.log("המאגר נטען! " + phoneList.length + " מספרים.");
   } catch (error) {
-    console.error("שגיאה בטעינת המאגר:", error);
+    console.error("Error loading database:", error);
   }
 }
 
@@ -206,7 +203,8 @@ async function handleInput(){
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       addMessage("📊 **מאגר מספרי העוקץ ("+phoneList.length+"):**\n\n"+[...phoneList].sort().slice(0,100).join('\n') + (phoneList.length > 100 ? "\n..." : ""),"bot",true);
+       // שיניתי כאן מ-100 ל-5000 כדי שיציג את כל הרשימה
+       addMessage("📊 **מאגר מספרי העוקץ ("+phoneList.length+"):**\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
     }
   }
   else{
@@ -235,9 +233,8 @@ async function handleInput(){
 document.getElementById("enterBtn").onclick=handleInput;
 document.getElementById("userInput").onkeypress=e=>{if(e.key==='Enter')handleInput();}
 
-// הפעלה כשהדף נטען
 window.addEventListener("load", async () => {
-  await loadDatabase(); // טוען את גוגל שיטס
+  await loadDatabase();
   setTimeout(() => { 
     const splash = document.getElementById("splashScreen"); 
     splash.style.opacity = "0"; 
