@@ -151,7 +151,7 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; }
     <div class="header"><h1>בודק עוקצים בית"ר</h1></div>
     <div class="chat-box" id="chatBox">
       <div class="message bot welcome-msg">
-<b><u>ברוכים הבאים למאגר העוקצים הרשמי</u></b>
+<b><u>ברוכים הבאים למאגר העוקצים הרשמי✅</u></b>
 • שלחו מספר טלפון או חלק ממנו (מינימום 3 ספרות) לבדיקה🔍 
 • כתבו "רשימה" כדי לקבל את כל המספרים במאגר📋
 • תמיד תזכרו שגם אם מספר כלשהו לא נמצא במאגר זה לא אומר שהוא אמין תמיד תהיו זהירים❗️
@@ -223,10 +223,12 @@ async function handleInput(){
       addMessage("⚠️ החיפוש קצר מדי.","bot");
     }
     else {
-      if(cleanNum.length >= 10 && phoneList.includes(cleanNum)) {
+      // שינוי כאן: בודק קודם כל אם המספר קיים במאגר בדיוק כפי שהוקלד
+      if(phoneList.includes(cleanNum)) {
          addMessage(`המספר ${cleanNum} עוקץ ⚠️`, "bot");
       } 
       else {
+        // רק אם אין התאמה מלאה, מחפש התאמות חלקיות
         const matchesScam = phoneList.filter(p => p.includes(cleanNum));
         if(matchesScam.length > 0){ 
           let resultsHTML = `🚨 נמצאו התאמות עבור "${cleanNum}":\n\n`; 
