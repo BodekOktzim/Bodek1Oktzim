@@ -35,7 +35,6 @@ body {
   color:var(--text-light);
 } 
 
-/* Splash */
 #splashScreen{
   position:fixed; inset:0;
   display:flex; flex-direction:column; justify-content:center; align-items:center;
@@ -50,7 +49,6 @@ body {
 @keyframes logoPop{0%{transform:scale(0.7);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes spin{to{transform:rotate(360deg)}} 
 
-/* Main Card */
 .main-card{
   background: rgba(18,18,18,0.9);
   width: 95%; max-width:600px; height:80vh;
@@ -202,11 +200,11 @@ function addMessage(text,sender,showCopy=false){
 } 
 
 async function handleInput(){
-  const input=document.getElementById("userInput"); const val=input.value.trim(); if(!val)return; addMessage(val,"user"); input.value="";
+  const input=document.getElementById("userInput"); const rawVal=input.value.trim(); if(!rawVal)return; addMessage(rawVal,"user"); input.value="";
   const checkingMsg=addMessage("בודק","bot"); checkingMsg.classList.add("checking");
   await new Promise(r=>setTimeout(r,600)); checkingMsg.remove();
   
-  if(val==="רשימה"){ 
+  if(rawVal==="רשימה"){ 
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
@@ -214,29 +212,40 @@ async function handleInput(){
     }
   }
   else{
-    let normalized=val.replace(/[-\s]/g,''); 
-    if(normalized.startsWith('+972')) normalized='0'+normalized.slice(4); 
-    else if(normalized.startsWith('972')&&normalized.length>=12) normalized='0'+normalized.slice(3);
-    const cleanNum=normalized.replace(/[^\d+]/g,''); 
+    // ניקוי הקלט: השארת ספרות בלבד
+    let cleanInput = rawVal.replace(/\D/g, ''); 
     
-    if(cleanNum.length<3) {
+    // אם המשתמש הזין קידומת בינלאומית, ננרמל אותה לפורמט ישראלי רגיל (עם 0)
+    if(cleanInput.startsWith('972')) {
+        cleanInput = '0' + cleanInput.slice(3);
+    } else if (cleanInput.length === 9 && !cleanInput.startsWith('0')) {
+        // מקרה שבו הזינו 9 ספרות ללא 0 בהתחלה
+        cleanInput = '0' + cleanInput;
+    }
+
+    if(cleanInput.length < 3) {
       addMessage("⚠️ החיפוש קצר מדי.","bot");
     }
     else {
-      // שינוי כאן: בודק קודם כל אם המספר קיים במאגר בדיוק כפי שהוקלד
-      if(phoneList.includes(cleanNum)) {
-         addMessage(`המספר ${cleanNum} עוקץ ⚠️`, "bot");
+      // בדיקה אם קיים במאגר (מנקים גם את מספרי המאגר להשוואה נקייה)
+      const exactMatch = phoneList.find(p => p.replace(/\D/g, '') === cleanInput);
+
+      if(exactMatch) {
+         addMessage(`המספר ${rawVal} עוקץ ⚠️`, "bot");
       } 
       else {
-        // רק אם אין התאמה מלאה, מחפש התאמות חלקיות
-        const matchesScam = phoneList.filter(p => p.includes(cleanNum));
+        // חיפוש חלקי
+        const matchesScam = phoneList.filter(p => p.replace(/\D/g, '').includes(cleanInput));
         if(matchesScam.length > 0){ 
-          let resultsHTML = `🚨 נמצאו התאמות עבור "${cleanNum}":\n\n`; 
-          resultsHTML += matchesScam.map(p => p.split(cleanNum).join(`<span class="highlight-match">${cleanNum}</span>`)).join('<br>'); 
+          let resultsHTML = `🚨 נמצאו התאמות עבור "${rawVal}":\n\n`; 
+          resultsHTML += matchesScam.map(p => {
+             // הדגשת החלק המתאים בתוך המספר שנמצא
+             return p.split(rawVal).join(`<span class="highlight-match">${rawVal}</span>`);
+          }).join('<br>'); 
           addMessage(resultsHTML,"bot"); 
         } 
         else {
-          addMessage(`המספר ${cleanNum} לא נמצא במאגר ❌️\n\nחשוב לזכור: לא בטוח שהוא אמין! תמיד תהיו זהירים.`,"bot");
+          addMessage(`המספר ${rawVal} לא נמצא במאגר ❌️\n\nחשוב לזכור: לא בטוח שהוא אמין! תמיד תהיו זהירים.`,"bot");
         }
       }
     }
