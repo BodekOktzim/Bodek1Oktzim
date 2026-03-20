@@ -228,7 +228,7 @@ async function handleInput(){
     }
     else {
       // בדיקה אם קיים במאגר (מנקים גם את מספרי המאגר להשוואה נקייה)
-      const exactMatch = phoneList.find(p => p.replace(/\D/g, '') === cleanInput);
+      const exactMatch = phoneList.find(p => p.replace(/\D/g,/- '') === cleanInput);
 
       if(exactMatch) {
          addMessage(`המספר ${rawVal} עוקץ ⚠️`, "bot");
