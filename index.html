@@ -172,7 +172,7 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; }
 </div> 
 
 <script>
-const sheetURL = 'https://docs.google.com/spreadsheets/d/18RfRhdFg1m_lNZecRXl9rLwaxRto_VtlkDjjI5B2gL4/edit?usp=drivesdk';
+const sheetURL = 'https://docs.google.com/spreadsheets/d/18RfRhdFg1m_lNZecRXl9rLwaxRto_VtlkDjjI5B2gL4/gviz/tq?tqx=out:csv';
 let phoneList = []; 
 
 async function loadDatabase() {
@@ -203,7 +203,7 @@ async function handleInput(){
   const input=document.getElementById("userInput"); const rawVal=input.value.trim(); if(!rawVal)return; addMessage(rawVal,"user"); input.value="";
   const checkingMsg=addMessage("בודק","bot"); checkingMsg.classList.add("checking");
   await new Promise(r=>setTimeout(r,600)); checkingMsg.remove();
-  
+
   if(rawVal==="רשימה"){ 
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
@@ -212,14 +212,11 @@ async function handleInput(){
     }
   }
   else{
-    // ניקוי הקלט: השארת ספרות בלבד
     let cleanInput = rawVal.replace(/\D/g, ''); 
-    
-    // אם המשתמש הזין קידומת בינלאומית, ננרמל אותה לפורמט ישראלי רגיל (עם 0)
+
     if(cleanInput.startsWith('972')) {
         cleanInput = '0' + cleanInput.slice(3);
     } else if (cleanInput.length === 9 && !cleanInput.startsWith('0')) {
-        // מקרה שבו הזינו 9 ספרות ללא 0 בהתחלה
         cleanInput = '0' + cleanInput;
     }
 
@@ -227,25 +224,22 @@ async function handleInput(){
       addMessage("⚠️ החיפוש קצר מדי.","bot");
     }
     else {
-      // בדיקה אם קיים במאגר (מנקים גם את מספרי המאגר להשוואה נקייה)
-      const exactMatch = phoneList.find(p => p.replace(/\D/g,/- '') === cleanInput);
+      const exactMatch = phoneList.find(p => p.replace(/\D/g, '') === cleanInput);
 
       if(exactMatch) {
-         addMessage(`המספר ${rawVal} עוקץ ⚠️`, "bot");
+         addMessage(`המספר ${cleanInput} עוקץ ⚠️`, "bot");
       } 
       else {
-        // חיפוש חלקי
         const matchesScam = phoneList.filter(p => p.replace(/\D/g, '').includes(cleanInput));
         if(matchesScam.length > 0){ 
-          let resultsHTML = `🚨 נמצאו התאמות עבור "${rawVal}":\n\n`; 
+          let resultsHTML = `🚨 נמצאו התאמות עבור "${cleanInput}":\n\n`; 
           resultsHTML += matchesScam.map(p => {
-             // הדגשת החלק המתאים בתוך המספר שנמצא
-             return p.split(rawVal).join(`<span class="highlight-match">${rawVal}</span>`);
+             return p.split(cleanInput).join(`<span class="highlight-match">${cleanInput}</span>`);
           }).join('<br>'); 
           addMessage(resultsHTML,"bot"); 
         } 
         else {
-          addMessage(`המספר ${rawVal} לא נמצא במאגר ❌️\n\nחשוב לזכור: לא בטוח שהוא אמין! תמיד תהיו זהירים.`,"bot");
+          addMessage(`המספר ${cleanInput} לא נמצא במאגר ❌️\n\nחשוב לזכור: לא בטוח שהוא אמין! תמיד תהיו זהירים.`,"bot");
         }
       }
     }
