@@ -5,7 +5,6 @@
 <title>בודק עוקצים בית"ר | מאגר רשמי</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet"> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQLFBE4FMZ"></script>
 <script>
@@ -125,11 +124,9 @@ button#enterBtn{
 }
 
 .actions{ padding:15px; display:flex; justify-content:space-around; align-items:center; background:rgba(0,0,0,0.6); border-top:1px solid #333;}
-.action-btn{ font-weight:bold; cursor:pointer; font-size:0.95em; text-decoration: none; }
+.action-btn{ font-weight:bold; cursor:pointer; font-size:0.95em; }
 .report-trigger{ color:#ff4444; text-decoration:underline; }
 .share-trigger{ color:var(--beitar-yellow); } 
-.telegram-trigger{ color: #0088cc; }
-.telegram-trigger i { margin-left: 5px; } /* רווח קטן בין האייקון לטקסט */
 
 #reportSection{ display:none; height:100%; }
 iframe{ width:100%; height:calc(100% - 50px); border:none; }
@@ -165,7 +162,6 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; }
     <div class="actions">
       <span class="action-btn report-trigger" onclick="toggleReport(true)">⚠️ דווח על עוקץ</span>
       <span class="action-btn share-trigger" onclick="shareSite()">🔗 שיתוף המאגר</span>
-      <a href="https://t.me/Oktsim_BJ_bot" target="_blank" class="action-btn telegram-trigger"><i class="fab fa-telegram"></i> לבוט שלנו בטלגרם</a>
     </div>
   </div> 
 
