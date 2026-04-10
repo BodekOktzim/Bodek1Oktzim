@@ -86,6 +86,8 @@ body {
   font-size:1em; white-space:pre-line; word-break:break-word;
   box-shadow:0 5px 20px rgba(0,0,0,0.5);
   opacity:0; transform:translateY(20px) scale(0.95); animation:messagePop 0.35s forwards;
+  /* פתרון לבעיית הצגת הפלוס במספרים בינלאומיים */
+  unicode-bidi: plaintext; 
 }
 
 .welcome-msg {
@@ -114,6 +116,7 @@ body {
   display:block; margin-top:8px; padding:6px 12px; font-size:0.85em;
   background:black; color:var(--beitar-yellow); border:1px solid var(--beitar-yellow);
   border-radius:8px; cursor:pointer; font-weight:bold;
+  unicode-bidi: isolate;
 }
 
 .input-container{ padding:15px; background:rgba(0,0,0,0.6); display:flex; gap:10px; }
@@ -129,7 +132,7 @@ button#enterBtn{
 .report-trigger{ color:#ff4444; text-decoration:underline; }
 .share-trigger{ color:var(--beitar-yellow); } 
 .telegram-trigger{ color: #0088cc; }
-.telegram-trigger i { margin-left: 5px; } /* רווח קטן בין האייקון לטקסט */
+.telegram-trigger i { margin-left: 5px; } 
 
 #reportSection{ display:none; height:100%; }
 iframe{ width:100%; height:calc(100% - 50px); border:none; }
@@ -195,7 +198,18 @@ function toggleReport(show){ document.getElementById('reportSection').style.disp
 
 function shareSite(){ if(navigator.share){ navigator.share({ title:'בודק עוקצים בית"ר', text:'כנסו לבדוק מספרי טלפון במאגר העוקצים הרשמי של בית"ר!', url:window.location.href }).catch(err=>console.log(err)); } else { navigator.clipboard.writeText(window.location.href); alert("הקישור הועתק ללוח!"); } }
 
-function copyList(){ navigator.clipboard.writeText("⚠️ רשימת מספרי עוקץ:\n"+[...phoneList].sort().join('\n')).then(()=>alert("הרשימה הועתקה!")); } 
+function getSortedList() {
+  return [...phoneList].sort((a, b) => {
+    const numA = a.replace(/\D/g, '');
+    const numB = b.replace(/\D/g, '');
+    return numA.localeCompare(numB, undefined, {numeric: true});
+  });
+}
+
+function copyList(){ 
+  const sorted = getSortedList();
+  navigator.clipboard.writeText("⚠️ רשימת מספרי עוקץ:\n" + sorted.join('\n')).then(()=>alert("הרשימה הועתקה!")); 
+} 
 
 function addMessage(text,sender,showCopy=false){
   const div=document.createElement("div"); div.className=`message ${sender}`; div.innerHTML=text;
@@ -212,7 +226,7 @@ async function handleInput(){
     if(phoneList.length === 0) {
        addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       addMessage("📊 מאגר מספרי העוקץ ("+phoneList.length+"):\n\n"+[...phoneList].sort().slice(0,5000).join('\n'),"bot",true);
+       addMessage("📊 מאגר מספרי העוקץ ("+phoneList.length+"):\n\n" + getSortedList().join('\n'), "bot", true);
     }
   }
   else{
