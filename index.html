@@ -133,9 +133,62 @@ button#enterBtn{
 .telegram-trigger{ color: #0088cc; }
 .telegram-trigger i { margin-left: 5px; } 
 
-#reportSection{ display:none; height:100%; }
-iframe{ width:100%; height:calc(100% - 50px); border:none; }
-.back-btn{ background:#000; color:var(--beitar-yellow); padding:12px; text-align:center; cursor:pointer; font-weight:bold; border-radius:8px; margin-bottom: 10px; } 
+#reportSection{ display:none; height:100%; padding: 20px; text-align: center; overflow-y: auto; }
+.report-notice-card {
+  background: #222;
+  border: 2px solid var(--beitar-yellow);
+  border-radius: 16px;
+  padding: 25px 20px;
+  margin-top: 15px;
+  text-align: right;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.report-notice-card h2 {
+  color: var(--beitar-yellow);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+.report-list {
+  list-style: none;
+  font-size: 1.1em;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+.report-list li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.report-warning-footer {
+  color: #ff4444;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.95em;
+  margin-top: 15px;
+  border-top: 1px solid #444;
+  padding-top: 12px;
+}
+.continue-btn {
+  background: var(--beitar-yellow);
+  color: black;
+  border: none;
+  padding: 14px 24px;
+  font-size: 1.1em;
+  font-weight: 900;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  transition: transform 0.2s;
+}
+.continue-btn:hover {
+  transform: scale(1.02);
+}
+
+iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; }
+.back-btn{ background:#000; color:var(--beitar-yellow); padding:12px; text-align:center; cursor:pointer; font-weight:bold; border-radius:8px; margin-bottom: 10px; border: 1px solid var(--beitar-yellow); } 
 
 .checking::after{ display:inline-block; animation:dotsAnimation 1s steps(4,end) infinite; content:""; }
 @keyframes dotsAnimation{0%{content:"";}25%{content:".";}50%{content:"..";}75%{content:"...";}100%{content:"";}}
@@ -173,7 +226,23 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; }
 
   <div id="reportSection">
     <div class="back-btn" onclick="toggleReport(false)">✖ חזור למסך הבדיקה</div>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd-IDkaGSpzk8f5Vw1e8QhiFo_kBs7ID_ojhpdYoVLyT-rvpw/viewform?embedded=true"></iframe>
+    
+    <!-- מסך הנחיות לפני מעבר לטופס -->
+    <div id="reportInstructions" class="report-notice-card">
+      <h2>הנחיות לדיווח על עוקץ ⚠️</h2>
+      <ul class="report-list">
+        <li>📸 צילומי מסך של הצ׳אט</li>
+        <li>📱 מספר הטלפון של העוקץ</li>
+        <li>💳 תמונה/אישור של ההעברה</li>
+      </ul>
+      <div class="report-warning-footer">
+        בלי הפרטים האלה לא נפרסם ולא נעלה את המספר למאגר.
+      </div>
+      <button class="continue-btn" onclick="openReportForm()">המשך לטופס הדיווח ⬅️</button>
+    </div>
+
+    <!-- טופס גוגל פורמס -->
+    <iframe id="reportIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSd-IDkaGSpzk8f5Vw1e8QhiFo_kBs7ID_ojhpdYoVLyT-rvpw/viewform?embedded=true"></iframe>
   </div>
 </div> 
 
@@ -193,7 +262,21 @@ async function loadDatabase() {
   }
 }
 
-function toggleReport(show){ document.getElementById('reportSection').style.display=show?'block':'none'; document.getElementById('mainSection').style.display=show?'none':'block'; }
+function toggleReport(show){ 
+  document.getElementById('reportSection').style.display = show ? 'block' : 'none'; 
+  document.getElementById('mainSection').style.display = show ? 'none' : 'block'; 
+  
+  if(!show) {
+    // איפוס לתצוגת ההנחיות בעת סגירה/חזרה
+    document.getElementById('reportInstructions').style.display = 'block';
+    document.getElementById('reportIframe').style.display = 'none';
+  }
+}
+
+function openReportForm(){
+  document.getElementById('reportInstructions').style.display = 'none';
+  document.getElementById('reportIframe').style.display = 'block';
+}
 
 function shareSite(){ if(navigator.share){ navigator.share({ title:'בודק עוקצים בית"ר', text:'כנסו לבדוק מספרי טלפון במאגר העוקצים הרשמי של בית"ר!', url:window.location.href }).catch(err=>console.log(err)); } else { navigator.clipboard.writeText(window.location.href); alert("הקישור הועתק ללוח!"); } }
 
