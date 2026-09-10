@@ -133,7 +133,7 @@ button#enterBtn{
 .telegram-trigger{ color: #0088cc; }
 .telegram-trigger i { margin-left: 5px; } 
 
-#reportSection{ display:none; height:100%; padding: 20px; text-align: center; overflow-y: auto; }
+#reportSection{ display:none; height:100%; padding: 15px; text-align: center; overflow-y: auto; }
 .report-notice-card {
   background: #222;
   border: 2px solid var(--beitar-yellow);
@@ -187,7 +187,7 @@ button#enterBtn{
   transform: scale(1.02);
 }
 
-iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; }
+iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; background: transparent; }
 .back-btn{ background:#000; color:var(--beitar-yellow); padding:12px; text-align:center; cursor:pointer; font-weight:bold; border-radius:8px; margin-bottom: 10px; border: 1px solid var(--beitar-yellow); } 
 
 .checking::after{ display:inline-block; animation:dotsAnimation 1s steps(4,end) infinite; content:""; }
@@ -231,18 +231,19 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; }
     <div id="reportInstructions" class="report-notice-card">
       <h2>הנחיות לדיווח על עוקץ ⚠️</h2>
       <ul class="report-list">
-        <li>📸 צילומי מסך של הצ׳אט</li>
         <li>📱 מספר הטלפון של העוקץ</li>
-        <li>💳 תמונה/אישור של ההעברה</li>
+        <li>📸 הוכחה של העוקץ (תמונה / סרטון)</li>
+        <li>📝 תיאור המקרה</li>
+        <li>📞 מספר הטלפון שלך ליצירת קשר</li>
       </ul>
       <div class="report-warning-footer">
-        בלי הפרטים האלה לא נפרסם ולא נעלה את המספר למאגר.
+        בלי הפרטים וההוכחות לא נפרסם ולא נעלה את המספר למאגר.
       </div>
       <button class="continue-btn" onclick="openReportForm()">המשך לטופס הדיווח ⬅️</button>
     </div>
 
-    <!-- טופס גוגל פורמס -->
-    <iframe id="reportIframe" src="https://docs.google.com/forms/d/e/1FAIpQLSd-IDkaGSpzk8f5Vw1e8QhiFo_kBs7ID_ojhpdYoVLyT-rvpw/viewform?embedded=true"></iframe>
+    <!-- טופס Tally החדש -->
+    <iframe id="reportIframe" src="https://tally.so/r/LZrR0v"></iframe>
   </div>
 </div> 
 
@@ -267,7 +268,6 @@ function toggleReport(show){
   document.getElementById('mainSection').style.display = show ? 'none' : 'block'; 
   
   if(!show) {
-    // איפוס לתצוגת ההנחיות בעת סגירה/חזרה
     document.getElementById('reportInstructions').style.display = 'block';
     document.getElementById('reportIframe').style.display = 'none';
   }
