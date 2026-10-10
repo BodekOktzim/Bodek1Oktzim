@@ -133,6 +133,48 @@ button#enterBtn{
 .telegram-trigger{ color: #0088cc; }
 .telegram-trigger i { margin-left: 5px; } 
 
+.scam-guide-trigger {
+  display:block; align-self:center; flex:0 0 auto;
+  margin:0 15px 10px; padding:11px 18px;
+  background:#080808; color:var(--beitar-yellow);
+  border:1px solid var(--beitar-yellow); border-radius:12px;
+  font:900 1em 'Heebo',sans-serif; cursor:pointer;
+}
+.scam-guide-trigger:hover,.scam-guide-trigger:focus-visible { background:#242000; outline:2px solid var(--beitar-yellow); outline-offset:2px; }
+.scam-guide-modal[hidden] { display:none; }
+.scam-guide-modal {
+  position:fixed; inset:0; z-index:10000; display:flex;
+  align-items:center; justify-content:center; padding:16px;
+  background:rgba(0,0,0,.82); direction:rtl; overflow:hidden;
+}
+.scam-guide-content {
+  position:relative; width:min(100%,720px); max-height:calc(100vh - 32px);
+  overflow-y:auto; overscroll-behavior:contain; background:#121212;
+  color:#f1f1f1; border:1px solid rgba(252,227,0,.75); border-radius:18px;
+  padding:24px; box-shadow:0 16px 50px rgba(0,0,0,.7); line-height:1.75;
+}
+.scam-guide-content h2,.scam-guide-content h3 { color:var(--beitar-yellow); line-height:1.4; }
+.scam-guide-content h2 { margin:0 44px 12px 0; font-size:1.55em; }
+.scam-guide-content h3 { margin:0 0 8px; font-size:1.1em; }
+.scam-guide-content p { margin:0 0 12px; }
+.scam-guide-close {
+  position:absolute; top:14px; right:14px; width:38px; height:38px;
+  display:grid; place-items:center; border:1px solid #777; border-radius:10px;
+  background:#222; color:white; font-size:1.35em; cursor:pointer;
+}
+.scam-guide-close:focus-visible,.scam-guide-ticket:focus-visible { outline:2px solid white; outline-offset:3px; }
+.scam-guide-item { padding:14px 0 4px; border-top:1px solid #373737; }
+.scam-guide-item strong { color:var(--beitar-yellow); }
+.scam-guide-warning { margin-top:16px; padding:16px; background:#282400; border:1px solid var(--beitar-yellow); border-radius:12px; }
+.scam-guide-ticket-box { margin-top:16px; padding:16px; background:#1c1c1c; border:1px solid #5a5200; border-radius:12px; }
+.scam-guide-ticket { display:inline-block; margin-top:8px; padding:10px 16px; border-radius:9px; background:var(--beitar-yellow); color:#111; font-weight:900; text-decoration:none; }
+@media(max-width:600px) {
+  .scam-guide-trigger { width:calc(100% - 30px); min-height:46px; }
+  .scam-guide-modal { padding:8px; }
+  .scam-guide-content { max-height:calc(100vh - 16px); padding:20px 16px; border-radius:14px; }
+  .scam-guide-content h2 { font-size:1.3em; }
+}
+
 #reportSection{ display:none; height:100%; padding: 15px; text-align: center; overflow-y: auto; }
 .report-notice-card {
   background: #222;
@@ -205,6 +247,7 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
   <div class="top-bar"></div>
   <div id="mainSection">
     <div class="header"><h1>בודק עוקצים בית"ר</h1></div>
+    <button id="scamGuideOpen" class="scam-guide-trigger" type="button">איך להיזהר מעוקצים!</button>
     <div class="chat-box" id="chatBox">
       <div class="message bot welcome-msg">
 <b><u>ברוכים הבאים למאגר העוקצים הרשמי✅</u></b>
@@ -247,6 +290,58 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
   </div>
 </div> 
 
+<div id="scamGuideModal" class="scam-guide-modal" hidden>
+  <section class="scam-guide-content" role="dialog" aria-modal="true" aria-labelledby="scamGuideTitle" tabindex="-1">
+    <button id="scamGuideClose" class="scam-guide-close" type="button" aria-label="סגירת מדריך">×</button>
+    <h2 id="scamGuideTitle">🛡️ איך נזהרים מעוקץ כרטיסים?</h2>
+    <p><strong>בית״רים יקרים 💛🖤</strong></p>
+    <p>לפני שקונים כרטיס למשחק מאדם פרטי, חשוב לעצור לרגע ולבדוק את מי שנמצא בצד השני. הנה כמה צעדים שיכולים לעזור לכם לזהות סימני אזהרה ולהקטין את הסיכון לעוקץ.</p>
+
+    <article class="scam-guide-item"><h3>1. 💸 היזהרו משיטות תשלום חשודות</h3>
+      <p>בדרך כלל, אחד מסימני האזהרה הוא כשהמוכר מבקש העברה בנקאית, קוד למשיכת כסף ללא כרטיס או שימוש באפליקציות לא מוכרות להעברת כספים.</p>
+      <p>אל תמסרו קודים ואל תעבירו כסף לפני שבדקתם היטב את אמינות העסקה. אם המוכר לוחץ עליכם לשלם במהירות או מסרב להשתמש בדרך תשלום בטוחה, עצרו ובדקו שוב.</p></article>
+
+    <article class="scam-guide-item"><h3>2. 🪪 בקשו אימות זהות</h3>
+      <p>חשוב לבקש מהמוכר לאמת את זהותו באמצעות תעודת זהות, רישיון נהיגה או אמצעי זיהוי מתאים אחר. אם הוא מתחמק שוב ושוב או ממציא תירוצים, זה סימן אזהרה.</p>
+      <p>עם זאת, חשוב לזכור שגם תעודות זהות ורישיונות עלולים להיות מזויפים או שייכים לאדם אחר, ולכן האימות הזה אינו מבטיח שהמוכר אמין.</p>
+      <p>אם המוכר מסכים לאימות, שימו לב שהפרטים מתאימים לאדם שאיתו אתם מדברים. אל תסתמכו על מסמך בלבד — בדקו גם את שאר הסימנים.</p>
+      <p><strong>טיפ חשוב:</strong> אם קיבלתם מסמך זיהוי ואתם חושדים שמדובר בעוקץ, תעדו את המידע הרלוונטי ושמרו את ההתכתבויות והראיות. אם יש חשד ממשי להונאה, העבירו את החומר לגורמים המתאימים. אל תפרסמו מסמכי זהות מלאים או פרטים רגישים בפומבי.</p></article>
+
+    <article class="scam-guide-item"><h3>3. 📱 בדקו את פרופיל הפייסבוק</h3>
+      <p>אם המוכר פנה אליכם דרך פייסבוק, או שאתם פניתם אליו דרך פייסבוק, בקשו מהמוכר לאשר אתכם כחברים ובדקו היטב את הפרופיל שלו.</p>
+      <p>שימו לב לדברים הבאים:</p><ul><li>האם יש בפרופיל פעילות לאורך זמן?</li><li>האם יש חברים, תגובות, לייקים ותמונות שנראים אמיתיים?</li><li>האם הפרופיל נראה פעיל ואמין, או שהוא חדש ודל בפעילות?</li></ul>
+      <p>אם מדובר בפרופיל עם מעט מאוד חברים, כמעט בלי פעילות או עם פרטים חשודים, כדאי להיזהר במיוחד.</p>
+      <p>חשוב לזכור שגם פרופיל שנראה אמין יכול להיות מזויף או פרוץ, ולכן הבדיקה הזאת לבדה אינה מספיקה.</p></article>
+
+    <article class="scam-guide-item"><h3>4. 🔎 בדקו את מספר הטלפון ב-Me וב-Truecaller</h3>
+      <p>אפשר לבדוק את מספר הטלפון של המוכר באפליקציות Me ו-Truecaller, ולראות איזה שם מופיע עבור המספר.</p>
+      <p>השוו את השם שמופיע באפליקציות לשם בפרופיל הפייסבוק ולפרטים שהמוכר מסר לכם. אם מופיע שם שונה או שיש חוסר התאמה, שאלו שאלות ובדקו לפני שאתם ממשיכים בעסקה.</p>
+      <p>חשוב לזכור שהשמות באפליקציות האלה מבוססים על מידע שעשוי להיות לא מדויק, ולכן הם יכולים לעזור בבדיקה אך אינם הוכחה לזהות האמיתית של האדם.</p></article>
+
+    <article class="scam-guide-item"><h3>5. 💬 אמתו את המוכר דרך רשת חברתית נוספת</h3>
+      <p>אם אתם מדברים עם המוכר בוואטסאפ, בקשו ממנו קישור לפרופיל הפייסבוק או האינסטגרם שלו.</p>
+      <p>לאחר מכן, שלחו לו הודעה גם דרך אותו פרופיל ובקשו שיענה לכם שם ויאשר שהוא אכן האדם שמדבר אתכם בוואטסאפ ומוכר את הכרטיס.</p>
+      <p>זה יכול להוסיף שכבת אימות ולעזור לבדוק שהחשבונות קשורים לאותו אדם. עם זאת, גם חשבונות ברשתות החברתיות עלולים להיות מזויפים או פרוצים, ולכן אל תסתמכו על הבדיקה הזאת בלבד.</p></article>
+
+    <article class="scam-guide-item"><h3>6. 📞 דברו עם המוכר</h3>
+      <p>מומלץ לנהל שיחה עם המוכר לפני העברת הכסף, לשאול שאלות על הכרטיס ולראות איך הוא מתנהל.</p>
+      <p>שימו לב אם הוא סבלני, עונה לעניין ומוכן להסביר, או שהוא בעיקר לוחץ עליכם להעביר כסף במהירות ומתחמק משאלות.</p>
+      <p>אם המוכר מסרב לדבר או מתחמק מכל ניסיון לברר פרטים, זה עשוי לעורר חשד. מצד שני, גם שיחה שמתנהלת בצורה טובה אינה מבטיחה שהעסקה אמינה.</p></article>
+
+    <aside class="scam-guide-warning"><h3>⚠️ חשוב לזכור!</h3>
+      <p>יש הרבה שיטות לעוקץ כרטיסים, וכל הזמן ממציאים שיטות חדשות. אף בדיקה בודדת לא מבטיחה שהמוכר אמין, וגם כמה סימנים חיוביים אינם ערובה לבטיחות.</p>
+      <p>אם אתם מבקשים מהמוכר תעודת זהות, רישיון נהיגה או אמצעי זיהוי אחר, והוא מסכים להציג אותם, תעדו את המידע הרלוונטי באופן אחראי ושמרו ראיות להתנהלות החשודה. אם מתברר שמדובר בעוקץ, אפשר להעביר את הראיות למשטרה או לגורמים המתאימים, כדי לסייע במניעת מקרים נוספים. הימנעו מפרסום פומבי של מסמכי זיהוי מלאים, מספרי זהות או פרטים אישיים רגישים.</p>
+      <p><strong>אל תתביישו לבקש אימות, לשאול שאלות ולוותר על עסקה שמרגישה לכם חשודה. עדיף לפספס כרטיס מאשר להפסיד כסף!</strong></p></aside>
+
+    <aside class="scam-guide-ticket-box"><h3>🎟️ רוצים לקנות או למכור בצורה מסודרת יותר?</h3>
+      <p>בית״רים יקרים, הכירו את TicketIL — פלטפורמה לקנייה ולמכירה של כרטיסים.</p>
+      <p>לקונים: הרכישה כוללת TicketIL Protect, בכפוף לתנאי השירות, למקרים שבהם בעיה מונעת כניסה לאירוע.</p>
+      <p>למוכרים: אפשר להעלות כרטיס בצורה מסודרת, בלי לנהל את כל התהליך בהודעות ובהעברות פרטיות.</p>
+      <a class="scam-guide-ticket" href="https://www.ticketil.com/g/rbke8" target="_blank" rel="noopener noreferrer">לכרטיסים של בית״ר ירושלים</a>
+    </aside>
+  </section>
+</div>
+
 <script>
 const sheetURL = 'https://docs.google.com/spreadsheets/d/18RfRhdFg1m_lNZecRXl9rLwaxRto_VtlkDjjI5B2gL4/gviz/tq?tqx=out:csv';
 let phoneList = []; 
@@ -279,6 +374,35 @@ function openReportForm(){
 }
 
 function shareSite(){ if(navigator.share){ navigator.share({ title:'בודק עוקצים בית"ר', text:'כנסו לבדוק מספרי טלפון במאגר העוקצים הרשמי של בית"ר!', url:window.location.href }).catch(err=>console.log(err)); } else { navigator.clipboard.writeText(window.location.href); alert("הקישור הועתק ללוח!"); } }
+
+const scamGuideModal = document.getElementById('scamGuideModal');
+const scamGuideDialog = scamGuideModal.querySelector('.scam-guide-content');
+const scamGuideClose = document.getElementById('scamGuideClose');
+let scamGuidePreviousFocus = null;
+function closeScamGuide(){
+  if(scamGuideModal.hidden) return;
+  scamGuideModal.hidden = true;
+  document.body.style.overflow = '';
+  if(scamGuidePreviousFocus) scamGuidePreviousFocus.focus();
+}
+document.getElementById('scamGuideOpen').addEventListener('click', () => {
+  scamGuidePreviousFocus = document.activeElement;
+  scamGuideModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  scamGuideClose.focus();
+});
+scamGuideClose.addEventListener('click', closeScamGuide);
+scamGuideModal.addEventListener('click', event => { if(event.target === scamGuideModal) closeScamGuide(); });
+document.addEventListener('keydown', event => {
+  if(scamGuideModal.hidden) return;
+  if(event.key === 'Escape') { closeScamGuide(); return; }
+  if(event.key === 'Tab') {
+    const focusable = [...scamGuideDialog.querySelectorAll('button, a[href]')];
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if(event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if(!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
+});
 
 function getSortedList() {
   return [...phoneList].sort((a, b) => {
