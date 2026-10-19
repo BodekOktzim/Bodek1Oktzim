@@ -373,7 +373,9 @@ function openReportForm(){
   document.getElementById('reportIframe').style.display = 'block';
 }
 
-function shareSite(){ if(navigator.share){ navigator.share({ title:'בודק עוקצים בית"ר', text:'כנסו לבדוק מספרי טלפון במאגר העוקצים הרשמי של בית"ר!', url:window.location.href }).catch(err=>console.log(err)); } else { navigator.clipboard.writeText(window.location.href); alert("הקישור הועתק ללוח!"); } }
+function shareSite(){ if(navigator.share){ navigator.share({ title:'בודק עוקצים בית"ר', text:'⚠️ אוהדי בית"ר, נזהרים מעוקצים!
+
+🔎 בודקים מספרים לפני שקונים ', url:window.location.href }).catch(err=>console.log(err)); } else { navigator.clipboard.writeText(window.location.href); alert("הקישור הועתק ללוח!"); } }
 
 const scamGuideModal = document.getElementById('scamGuideModal');
 const scamGuideDialog = scamGuideModal.querySelector('.scam-guide-content');
