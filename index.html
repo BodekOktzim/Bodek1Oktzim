@@ -373,9 +373,18 @@ function openReportForm(){
   document.getElementById('reportIframe').style.display = 'block';
 }
 
-function shareSite(){ if(navigator.share){ navigator.share({ title:'בודק עוקצים בית"ר', text:'⚠️ אוהדי בית"ר, נזהרים מעוקצים!
-
-🔎 בודקים מספרים לפני שקונים ', url:window.location.href }).catch(err=>console.log(err)); } else { navigator.clipboard.writeText(window.location.href); alert("הקישור הועתק ללוח!"); } }
+function shareSite(){
+  const shareMessage = 'לפני שקונים — בודקים⚠️\n\nמאגר העוקצים של אוהדי בית"ר:\n🔗 https://bodekoktzim.github.io/Bodek1Oktzim/';
+  if(navigator.share){
+    navigator.share({ title:'בודק עוקצים בית"ר', text:shareMessage }).catch(error=>{
+      if(error.name !== 'AbortError') console.error('Share failed:', error);
+    });
+  } else {
+    navigator.clipboard.writeText(shareMessage)
+      .then(()=>alert('הודעת השיתוף הועתקה!'))
+      .catch(error=>console.error('Copy failed:', error));
+  }
+}
 
 const scamGuideModal = document.getElementById('scamGuideModal');
 const scamGuideDialog = scamGuideModal.querySelector('.scam-guide-content');
