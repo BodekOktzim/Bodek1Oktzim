@@ -118,13 +118,17 @@ body {
   unicode-bidi: isolate;
 }
 
-.input-container{ padding:15px; background:rgba(0,0,0,0.6); display:flex; gap:10px; }
-input{ flex:1; background:#252525; border:1px solid #444; padding:12px; border-radius:12px; color:white; outline:none; }
+.input-container{ padding:15px; background:rgba(0,0,0,0.6); display:flex; gap:10px; direction:ltr; }
+input{ flex:1; min-width:0; direction:rtl; background:#252525; border:1px solid #444; padding:12px; border-radius:12px; color:white; outline:none; }
 input:focus { border-color: var(--beitar-yellow); }
 
-button#enterBtn{
-  background:var(--beitar-yellow); color:black; border:none; padding:0 20px; border-radius:12px; font-weight:900; cursor:pointer;
+button#enterBtn,button#listBtn{
+  flex:0 0 68px; min-height:44px; padding:0 8px; border-radius:12px;
+  font:900 0.95em 'Heebo',sans-serif; cursor:pointer;
 }
+button#enterBtn{ background:var(--beitar-yellow); color:black; border:none; }
+button#listBtn{ background:#080808; color:var(--beitar-yellow); border:1px solid var(--beitar-yellow); }
+button#listBtn:hover,button#listBtn:focus-visible{ background:#242000; outline:2px solid var(--beitar-yellow); outline-offset:2px; }
 
 .actions{ padding:15px; display:flex; justify-content:space-around; align-items:center; background:rgba(0,0,0,0.6); border-top:1px solid #333;}
 .action-btn{ font-weight:bold; cursor:pointer; font-size:0.95em; text-decoration: none; }
@@ -174,6 +178,11 @@ button#enterBtn{
 }
 
 #reportSection{ display:none; height:100%; padding: 15px; text-align: center; overflow-y: auto; }
+.number-list-section{ display:none; flex-direction:column; height:100%; min-height:0; padding:15px; text-align:right; }
+.number-list-section h2{ color:var(--beitar-yellow); text-align:center; margin:8px 0 4px; }
+.number-list-status{ text-align:center; margin-bottom:10px; }
+#numberListItems{ flex:1; min-height:0; overflow-y:auto; margin:0; padding:0 28px 8px 8px; direction:rtl; }
+#numberListItems li{ padding:7px 4px; border-bottom:1px solid #333; font-size:1.05em; }
 .report-notice-card {
   background: #222;
   border: 2px solid var(--beitar-yellow);
@@ -250,13 +259,14 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
       <div class="message bot welcome-msg">
 <b><u>ברוכים הבאים למאגר העוקצים הרשמי✅</u></b>
 • שלחו מספר טלפון או חלק ממנו (מינימום 3 ספרות) לבדיקה🔍 
-• כתבו "רשימה" כדי לקבל את כל המספרים במאגר📋
+• לחצו "רשימה" כדי לקבל את כל המספרים במאגר📋
 • תמיד תזכרו שגם אם מספר כלשהו לא נמצא במאגר זה לא אומר שהוא אמין תמיד תהיו זהירים❗️
       </div>
     </div>
     <div class="input-container">
+      <button id="enterBtn" type="button">בדוק</button>
       <input type="text" id="userInput" placeholder="הקלד מספר טלפון..." autocomplete="off">
-      <button id="enterBtn">בדוק</button>
+      <button id="listBtn" type="button">רשימה</button>
     </div>
     <div class="actions">
       <span class="action-btn report-trigger" onclick="toggleReport(true)">⚠️ דווח על עוקץ</span>
@@ -285,6 +295,12 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
     <!-- טופס Tally החדש -->
     <iframe id="reportIframe" src="https://tally.so/r/LZrR0v"></iframe>
   </div>
+  <section id="listSection" class="number-list-section" aria-labelledby="numberListTitle">
+    <button id="listBackBtn" class="back-btn" type="button">✖ חזרה למסך הבדיקה</button>
+    <h2 id="numberListTitle">📋 כל המספרים במאגר</h2>
+    <p id="numberListStatus" class="number-list-status" aria-live="polite"></p>
+    <ol id="numberListItems"></ol>
+  </section>
 </div> 
 
 <div id="scamGuideModal" class="scam-guide-modal" hidden>
@@ -358,6 +374,7 @@ async function loadDatabase() {
 function toggleReport(show){ 
   document.getElementById('reportSection').style.display = show ? 'block' : 'none'; 
   document.getElementById('mainSection').style.display = show ? 'none' : 'block'; 
+  document.getElementById('listSection').style.display = 'none';
   
   if(!show) {
     document.getElementById('reportInstructions').style.display = 'block';
@@ -368,6 +385,32 @@ function toggleReport(show){
 function openReportForm(){
   document.getElementById('reportInstructions').style.display = 'none';
   document.getElementById('reportIframe').style.display = 'block';
+}
+
+function showNumberList(){
+  document.getElementById('mainSection').style.display = 'none';
+  document.getElementById('reportSection').style.display = 'none';
+  const section = document.getElementById('listSection');
+  const list = document.getElementById('numberListItems');
+  const status = document.getElementById('numberListStatus');
+  const numbers = getSortedList();
+  list.replaceChildren();
+  if(numbers.length === 0){
+    status.textContent = 'המאגר עדיין נטען או אינו זמין כרגע. נסו שוב בעוד רגע.';
+  } else {
+    status.textContent = `במאגר ${numbers.length} מספרים:`;
+    numbers.forEach(number => {
+      const item = document.createElement('li');
+      item.textContent = number;
+      list.appendChild(item);
+    });
+  }
+  section.style.display = 'flex';
+}
+
+function closeNumberList(){
+  document.getElementById('listSection').style.display = 'none';
+  document.getElementById('mainSection').style.display = 'flex';
 }
 
 function shareSite(){
@@ -480,6 +523,8 @@ async function handleInput(){
 
 document.getElementById("enterBtn").onclick=handleInput;
 document.getElementById("userInput").onkeypress=e=>{if(e.key==='Enter')handleInput();}
+document.getElementById('listBtn').addEventListener('click', showNumberList);
+document.getElementById('listBackBtn').addEventListener('click', closeNumberList);
 
 window.addEventListener("load", async () => {
   await loadDatabase();
