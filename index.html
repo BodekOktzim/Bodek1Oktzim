@@ -181,8 +181,10 @@ button#listBtn:hover,button#listBtn:focus-visible{ background:#242000; outline:2
 .number-list-section{ display:none; flex-direction:column; height:100%; min-height:0; padding:15px; text-align:right; }
 .number-list-section h2{ color:var(--beitar-yellow); text-align:center; margin:8px 0 4px; }
 .number-list-status{ text-align:center; margin-bottom:10px; }
-#numberListItems{ flex:1; min-height:0; overflow-y:auto; margin:0; padding:0 8px 8px; direction:rtl; list-style-position:inside; }
-#numberListItems li{ padding:7px 4px; border-bottom:1px solid #333; font-size:1.05em; unicode-bidi:isolate; }
+#numberListItems{ flex:1; min-height:0; overflow-y:auto; margin:0; padding:0 8px 8px; direction:rtl; list-style:none; }
+#numberListItems li{ display:flex; align-items:baseline; gap:10px; padding:7px 4px; border-bottom:1px solid #333; font-size:1.05em; direction:rtl; }
+.number-list-index{ flex:0 0 auto; min-width:4.5ch; direction:ltr; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.number-list-phone{ direction:ltr; unicode-bidi:isolate; }
 .report-notice-card {
   background: #222;
   border: 2px solid var(--beitar-yellow);
@@ -399,9 +401,17 @@ function showNumberList(){
     status.textContent = 'המאגר עדיין נטען או אינו זמין כרגע. נסו שוב בעוד רגע.';
   } else {
     status.textContent = `במאגר ${numbers.length} מספרים:`;
-    numbers.forEach(number => {
+    numbers.forEach((number, index) => {
       const item = document.createElement('li');
-      item.textContent = number;
+      const rowNumber = document.createElement('span');
+      rowNumber.className = 'number-list-index';
+      rowNumber.textContent = `${index + 1}.`;
+      rowNumber.setAttribute('aria-hidden', 'true');
+      const phoneNumber = document.createElement('span');
+      phoneNumber.className = 'number-list-phone';
+      phoneNumber.dir = 'ltr';
+      phoneNumber.textContent = number;
+      item.append(rowNumber, phoneNumber);
       list.appendChild(item);
     });
   }
