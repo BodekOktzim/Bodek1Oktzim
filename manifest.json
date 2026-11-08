@@ -1,7 +1,7 @@
 {
   "name": "בודק עוקצים בית\"ר",
   "short_name": "בודק עוקצים",
-  "description": "מאגר רשמי של מספרי טלפון עוקץ",
+  "description": "כלי לבדיקת מספרי טלפון שדווחו כחשודים; התאמה במאגר אינה הוכחה לעוקץ.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#121212",
