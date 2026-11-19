@@ -465,7 +465,7 @@ function closeNumberList(){
 }
 
 function shareSite(){
-  const shareMessage = 'לפני שקונים — בודקים⚠️\n\nבדיקת מספרי טלפון שדווחו כחשודים במאגר של אוהדי בית״ר.\nהתאמה מציינת הופעה ברשימה בלבד, לא הוכחה לעוקץ.\n🔗 https://bodekoktzim.github.io/Bodek1Oktzim/';
+  const shareMessage = 'לפני שקונים — בודקים ⚠️\n\nבדיקת מספר טלפון חשוד בבודק עוקצים בית״ר.\nחפשו מספר באתר.\n\nנמצאה התאמה? המספר 100% עוקץ — לא לקנות ממנו.\n\nהמספר לא נמצא? זה לא אומר שהוא לא עוקץ. תמיד תהיו זהירים.\n\n🔗 https://bodekoktzim.github.io/Bodek1Oktzim/';
   if(navigator.share){
     navigator.share({ title:'בדיקת מספר טלפון חשוד | בודק עוקצים בית״ר', text:shareMessage }).catch(error=>{
       if(error.name !== 'AbortError') console.error('Share failed:', error);
