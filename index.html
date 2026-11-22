@@ -185,13 +185,43 @@ button#listBtn:hover,button#listBtn:focus-visible{ background:#242000; outline:2
 }
 
 .scam-guide-trigger {
-  display:block; align-self:center; flex:0 0 auto;
-  margin:0 15px 10px; padding:11px 18px;
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  align-self:center; flex:0 0 auto; position:relative;
+  width:min(520px,calc(100% - 30px)); min-height:64px;
+  margin:0 15px 12px; padding:14px 22px;
   background:#080808; color:var(--beitar-yellow);
-  border:1px solid var(--beitar-yellow); border-radius:12px;
-  font:900 1em 'Heebo',sans-serif; cursor:pointer;
+  border:2px solid var(--beitar-yellow); border-radius:18px;
+  font:900 1.12em 'Heebo',sans-serif; cursor:pointer;
+  box-shadow:0 0 12px rgba(252,227,0,.14);
+  transition:transform .15s ease,box-shadow .15s ease;
+  animation:guideButtonPress 2.8s ease-in-out infinite;
 }
-.scam-guide-trigger:hover,.scam-guide-trigger:focus-visible { background:#242000; outline:2px solid var(--beitar-yellow); outline-offset:2px; }
+.scam-guide-trigger:hover,.scam-guide-trigger:focus-visible { background:#181600; outline:2px solid var(--beitar-yellow); outline-offset:3px; transform:translateY(-2px); box-shadow:0 0 20px rgba(252,227,0,.38); }
+.guide-copy { flex:0 1 auto; }
+.guide-click-indicator { position:relative; display:grid; place-items:center; flex:0 0 38px; width:38px; height:40px; }
+.guide-click-indicator svg { width:34px; height:38px; overflow:visible; filter:drop-shadow(1px 2px 1px rgba(0,0,0,.38)); animation:guideCursorPress 2.8s ease-in-out infinite; transform-origin:35% 30%; }
+.guide-click-indicator::after { content:""; position:absolute; inset:8px; border:2px solid var(--beitar-yellow); border-radius:50%; opacity:0; animation:guideClickRipple 2.8s ease-out infinite; }
+@keyframes guideCursorPress {
+  0%,12% { opacity:0; transform:translate(-12px,-13px) scale(.82); }
+  26% { opacity:1; transform:translate(0,0) scale(1); }
+  34% { opacity:1; transform:translate(2px,4px) scale(.86); }
+  42%,70% { opacity:1; transform:translate(0,0) scale(1); }
+  82%,100% { opacity:0; transform:translate(-8px,-10px) scale(.9); }
+}
+@keyframes guideClickRipple {
+  0%,26% { opacity:0; transform:scale(.35); }
+  34% { opacity:.85; transform:scale(.7); }
+  54% { opacity:0; transform:scale(1.65); }
+  100% { opacity:0; transform:scale(1.65); }
+}
+@keyframes guideButtonPress {
+  0%,30%,52%,100% { transform:scale(1); box-shadow:0 0 12px rgba(252,227,0,.14); }
+  36%,44% { transform:scale(.985); box-shadow:0 0 18px rgba(252,227,0,.5),0 0 0 5px rgba(252,227,0,.16); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .scam-guide-trigger,.guide-click-indicator svg,.guide-click-indicator::after { animation:none; }
+  .guide-click-indicator svg { opacity:1; }
+}
 .scam-guide-modal[hidden] { display:none; }
 .scam-guide-modal {
   position:fixed; inset:0; z-index:10000; display:flex;
@@ -305,7 +335,15 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
   <div class="top-bar"></div>
   <div id="mainSection">
     <div class="header"><h1>בודק עוקצים בית"ר</h1></div>
-    <button id="scamGuideOpen" class="scam-guide-trigger" type="button">איך להיזהר מעוקצים!</button>
+    <button id="scamGuideOpen" class="scam-guide-trigger" type="button">
+      <span class="guide-copy">לחצו כדי לדעת איך להיזהר מעוקצים</span>
+      <span class="guide-click-indicator" aria-hidden="true">
+        <svg viewBox="0 0 32 40" focusable="false">
+          <path d="M5 3v25l6-6 4.5 10 4.5-2-4.4-10H25L5 3z" fill="#fff" stroke="#111" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M23 5l3-3M27 11h4M20 1V0" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </button>
     <div class="chat-box" id="chatBox">
       <div class="message bot welcome-msg">
 <b><u>ברוכים הבאים לבודק עוקצים בית״ר✅</u></b>
