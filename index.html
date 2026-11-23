@@ -222,6 +222,15 @@ button#listBtn:hover,button#listBtn:focus-visible{ background:#242000; outline:2
   .scam-guide-trigger,.guide-click-indicator svg,.guide-click-indicator::after { animation:none; }
   .guide-click-indicator svg { opacity:1; }
 }
+ .scam-guide-result-trigger {
+  display:inline-block; margin-top:12px; padding:10px 16px;
+  border:1px solid var(--beitar-yellow); border-radius:10px;
+  background:#080808; color:var(--beitar-yellow);
+  font:800 1em 'Heebo',sans-serif; cursor:pointer;
+}
+.scam-guide-result-trigger:hover,.scam-guide-result-trigger:focus-visible {
+  background:#242000; outline:2px solid var(--beitar-yellow); outline-offset:2px;
+}
 .scam-guide-modal[hidden] { display:none; }
 .scam-guide-modal {
   position:fixed; inset:0; z-index:10000; display:flex;
@@ -541,11 +550,17 @@ function closeScamGuide(){
   document.body.style.overflow = '';
   if(scamGuidePreviousFocus) scamGuidePreviousFocus.focus();
 }
-document.getElementById('scamGuideOpen').addEventListener('click', () => {
-  scamGuidePreviousFocus = document.activeElement;
+function openScamGuide(trigger = document.activeElement){
+  scamGuidePreviousFocus = trigger;
   scamGuideModal.hidden = false;
   document.body.style.overflow = 'hidden';
   scamGuideClose.focus();
+}
+document.getElementById('scamGuideOpen').addEventListener('click', () => openScamGuide());
+// גם הכפתורים שמופיעים בתוצאות החיפוש פותחים את אותו חלון מדריך קיים.
+document.getElementById('chatBox').addEventListener('click', event => {
+  const guideButton = event.target.closest('.scam-guide-result-trigger');
+  if(guideButton) openScamGuide(guideButton);
 });
 scamGuideClose.addEventListener('click', closeScamGuide);
 scamGuideModal.addEventListener('click', event => { if(event.target === scamGuideModal) closeScamGuide(); });
@@ -607,20 +622,20 @@ async function handleInput(){
       const exactMatch = phoneList.find(p => p.replace(/\D/g, '') === cleanInput);
 
       if(exactMatch) {
-         addMessage(`המספר ${cleanInput} מופיע במאגר דיווחים על מספרים שדווחו כחשודים ⚠️\n\nההתאמה מעידה על הופעה ברשימה בלבד; היא אינה הוכחה לעוקץ או לזהות המשתמש.`, "bot");
+         addMessage(`<strong>${cleanInput} עוקץ⚠️</strong><br><small>חשוב לזכור: התוצאה מבוססת על דיווח שהתקבל ונרשם במאגר. היא אינה אימות עצמאי של זהות האדם או של נסיבות המקרה.</small><br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`, "bot");
       } 
       else {
         const matchesScam = phoneList.filter(p => p.replace(/\D/g, '').includes(cleanInput));
         if(matchesScam.length > 0){ 
-          let resultsHTML = `🚨 נמצאו התאמות במאגר הדיווחים עבור "${cleanInput}":\n\n`;
+          let resultsHTML = `🚨 נמצאו התאמות במאגר הדיווחים עבור "${cleanInput}":<br><br>`;
           resultsHTML += matchesScam.map(p => {
              return p.split(cleanInput).join(`<span class="highlight-match">${cleanInput}</span>`);
           }).join('<br>'); 
-          resultsHTML += `<br><br><small>הופעה ברשימה מעידה על דיווח בלבד; היא אינה הוכחה לעוקץ או לזהות המשתמש.</small>`;
+          resultsHTML += `<br><br><small>ההתאמות מציינות הופעה במאגר דיווחים בלבד; הן אינן הוכחה לעוקץ או לזהות המשתמש.</small><br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`;
           addMessage(resultsHTML,"bot"); 
         } 
         else {
-          addMessage(`המספר ${cleanInput} לא נמצא במאגר ❌️\n\nחשוב לזכור: לא בטוח שהוא אמין! תמיד תהיו זהירים.`,"bot");
+          addMessage(`<strong>${cleanInput} אינו במסד הנתונים</strong><br><br><strong>חשוב לזכור:</strong> זה לא אומר שזה לא עוקץ או שבטוח לקנות ממנו. תמיד היו זהירים❗️<br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`,"bot");
         }
       }
     }
