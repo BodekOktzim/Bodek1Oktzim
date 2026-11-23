@@ -622,7 +622,7 @@ async function handleInput(){
       const exactMatch = phoneList.find(p => p.replace(/\D/g, '') === cleanInput);
 
       if(exactMatch) {
-         addMessage(`<strong>${cleanInput} עוקץ⚠️</strong><br><small>חשוב לזכור: התוצאה מבוססת על דיווח שהתקבל ונרשם במאגר. היא אינה אימות עצמאי של זהות האדם או של נסיבות המקרה.</small><br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`, "bot");
+         addMessage(`<strong>${cleanInput} עוקץ⚠️</strong><br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`, "bot");
       } 
       else {
         const matchesScam = phoneList.filter(p => p.replace(/\D/g, '').includes(cleanInput));
