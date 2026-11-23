@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>בדיקת מספר טלפון חשוד | בודק עוקצים בית״ר</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="בדיקת מספר טלפון חשוד בבודק עוקצים בית״ר. חפשו מספר באתר; התאמה מציינת שהמספר 100% עוקץ, לא לקנות ממנו. אם לא נמצא מספר כלשהו כעוקץ זה לא אומר שהוא לא תמיד תהיו זהירים.">
+<meta name="description" content="בדיקת מספר טלפון חשוד בבודק עוקצים בית״ר. חפשו מספר באתר; התאמה מציינת הופעה במאגר בלבד, לא הוכחה לעוקץ או לזהות המשתמש.">
 <link rel="canonical" href="https://bodekoktzim.github.io/Bodek1Oktzim/">
 <link rel="icon" type="image/png" href="./Bodek1Oktzim.png">
 <meta property="og:type" content="website">
@@ -21,6 +21,7 @@
 <meta name="twitter:title" content="בדיקת מספר טלפון חשוד | בודק עוקצים בית״ר">
 <meta name="twitter:description" content="בדיקת מספר טלפון חשוד לפי דיווחים במאגר. התאמה מציינת הופעה ברשימה בלבד; היא אינה הוכחה לעוקץ.">
 <meta name="twitter:image" content="https://bodekoktzim.github.io/Bodek1Oktzim/Bodek1Oktzim.png">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,7 +45,8 @@
   ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet"> 
+
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QQLFBE4FMZ"></script>
@@ -53,7 +55,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-QQLFBE4FMZ');
-</script> 
+</script>
 
 <style>
 :root {
@@ -61,9 +63,9 @@ gtag('config', 'G-QQLFBE4FMZ');
   --beitar-black: #121212;
   --text-light: #e0e0e0;
   --shadow-dark: rgba(0,0,0,0.8);
-} 
+}
 
-* { box-sizing:border-box; margin:0; padding:0; } 
+* { box-sizing:border-box; margin:0; padding:0; }
 
 body {
   font-family: 'Heebo', sans-serif;
@@ -71,32 +73,58 @@ body {
   background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2iO50d7vNOpKafNOLBfrE5ONhRFRZzLqNzRe8eU0FNJM17gKeq5qvjbBh&s=10');
   background-size: cover;
   background-position: center;
-  display:flex; justify-content:center; align-items:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   min-height:100vh;
   color:var(--text-light);
-} 
+}
 
 #splashScreen{
-  position:fixed; inset:0;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  background:#121212; z-index:9999; transition:opacity 0.6s;
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#121212;
+  z-index:9999;
+  transition:opacity 0.6s;
 }
-#splashScreen img{ width:140px; margin-bottom:20px; animation:logoPop 0.8s ease;}
+
+#splashScreen img{
+  width:140px;
+  margin-bottom:20px;
+  animation:logoPop 0.8s ease;
+}
+
 .loader{
-  width:45px; height:45px; border:4px solid rgba(252,227,0,0.2);
+  width:45px;
+  height:45px;
+  border:4px solid rgba(252,227,0,0.2);
   border-top:4px solid var(--beitar-yellow);
-  border-radius:50%; animation:spin 1s linear infinite;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
 }
-@keyframes logoPop{0%{transform:scale(0.7);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes spin{to{transform:rotate(360deg)}} 
+
+@keyframes logoPop{
+  0%{transform:scale(0.7);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
 
 .main-card{
   background: rgba(18,18,18,0.9);
-  width: 95%; max-width:600px; height:80vh;
-  border-radius:22px; overflow:hidden;
-  display:flex; flex-direction:column;
+  width: 95%;
+  max-width:600px;
+  height:80vh;
+  border-radius:22px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
   box-shadow:0 20px 50px var(--shadow-dark);
-} 
+}
 
 .top-bar{
   height:8px;
@@ -104,29 +132,52 @@ body {
   background-size:200% 100%;
   animation: glowMove 4s linear infinite;
 }
+
 @keyframes glowMove{
   0%{background-position:0% 50%}
   100%{background-position:200% 50%}
-} 
+}
 
-.header{ padding:20px; text-align:center; }
+.header{
+  padding:20px;
+  text-align:center;
+}
+
 .header h1{
-  font-size:2.3em; font-weight:900;
+  font-size:2.3em;
+  font-weight:900;
   color:var(--beitar-yellow);
   text-shadow: 0 0 10px var(--beitar-yellow), 0 0 20px rgba(252,227,0,0.5);
-} 
+}
 
-#mainSection{ display:flex; flex-direction:column; height:100%; }
-.chat-box{ flex-grow:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:14px; }
+#mainSection{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.chat-box{
+  flex-grow:1;
+  overflow-y:auto;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
 
 .message{
-  padding:12px 18px; border-radius:20px; 
+  padding:12px 18px;
+  border-radius:20px;
   width: fit-content;
   max-width: 85%;
-  font-size:1em; white-space:pre-line; word-break:break-word;
+  font-size:1em;
+  white-space:pre-line;
+  word-break:break-word;
   box-shadow:0 5px 20px rgba(0,0,0,0.5);
-  opacity:0; transform:translateY(20px) scale(0.95); animation:messagePop 0.35s forwards;
-  unicode-bidi: plaintext; 
+  opacity:0;
+  transform:translateY(20px) scale(0.95);
+  animation:messagePop 0.35s forwards;
+  unicode-bidi: plaintext;
 }
 
 .welcome-msg {
@@ -137,213 +188,617 @@ body {
 @keyframes messagePop{
   0%{opacity:0; transform:translateY(20px) scale(0.95);}
   100%{opacity:1; transform:translateY(0) scale(1);}
-} 
+}
 
-.user{ background:#333; color:white; align-self:flex-start; border-bottom-right-radius:6px; }
-.bot{ 
-  background:var(--beitar-yellow); 
-  color:black; 
-  align-self:flex-end; 
-  border-bottom-left-radius:6px; 
+.user{
+  background:#333;
+  color:white;
+  align-self:flex-start;
+  border-bottom-right-radius:6px;
+}
+
+.bot{
+  background:var(--beitar-yellow);
+  color:black;
+  align-self:flex-end;
+  border-bottom-left-radius:6px;
   font-weight:700;
   text-shadow: 0 0 5px rgba(255,255,255,0.2);
-} 
+}
 
-.highlight-match{ background:black; color:var(--beitar-yellow); padding:0 4px; border-radius:4px; } 
+.highlight-match{
+  background:black;
+  color:var(--beitar-yellow);
+  padding:0 4px;
+  border-radius:4px;
+}
 
 .copy-btn{
-  display:block; margin-top:8px; padding:6px 12px; font-size:0.85em;
-  background:black; color:var(--beitar-yellow); border:1px solid var(--beitar-yellow);
-  border-radius:8px; cursor:pointer; font-weight:bold;
+  display:block;
+  margin-top:8px;
+  padding:6px 12px;
+  font-size:0.85em;
+  background:black;
+  color:var(--beitar-yellow);
+  border:1px solid var(--beitar-yellow);
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
   unicode-bidi: isolate;
 }
 
-.input-container{ padding:15px; background:rgba(0,0,0,0.6); display:flex; gap:10px; direction:ltr; }
-input{ flex:1; min-width:0; direction:rtl; background:#252525; border:1px solid #444; padding:12px; border-radius:12px; color:white; outline:none; }
-input:focus { border-color: var(--beitar-yellow); }
+.input-container{
+  padding:15px;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  gap:10px;
+  direction:ltr;
+}
+
+input{
+  flex:1;
+  min-width:0;
+  direction:rtl;
+  background:#252525;
+  border:1px solid #444;
+  padding:12px;
+  border-radius:12px;
+  color:white;
+  outline:none;
+}
+
+input:focus {
+  border-color: var(--beitar-yellow);
+}
 
 button#enterBtn,button#listBtn{
-  flex:0 0 68px; min-height:44px; padding:0 8px; border-radius:12px;
-  font:900 0.95em 'Heebo',sans-serif; cursor:pointer;
+  flex:0 0 68px;
+  min-height:44px;
+  padding:0 8px;
+  border-radius:12px;
+  font:900 0.95em 'Heebo',sans-serif;
+  cursor:pointer;
 }
-button#enterBtn{ background:var(--beitar-yellow); color:black; border:none; }
-button#listBtn{ background:#080808; color:var(--beitar-yellow); border:1px solid var(--beitar-yellow); }
-button#listBtn:hover,button#listBtn:focus-visible{ background:#242000; outline:2px solid var(--beitar-yellow); outline-offset:2px; }
 
-.actions{ padding:15px; display:flex; justify-content:space-around; align-items:center; background:rgba(0,0,0,0.6); border-top:1px solid #333;}
-.action-btn{ font-weight:bold; cursor:pointer; font-size:0.95em; text-decoration: none; }
-.report-trigger{ color:#ff4444; text-decoration:underline; }
+button#enterBtn{
+  background:var(--beitar-yellow);
+  color:black;
+  border:none;
+}
+
+button#listBtn{
+  background:#080808;
+  color:var(--beitar-yellow);
+  border:1px solid var(--beitar-yellow);
+}
+
+button#listBtn:hover,button#listBtn:focus-visible{
+  background:#242000;
+  outline:2px solid var(--beitar-yellow);
+  outline-offset:2px;
+}
+
+.actions{
+  padding:15px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  border-top:1px solid #333;
+}
+
+.action-btn{
+  font-weight:bold;
+  cursor:pointer;
+  font-size:0.95em;
+  text-decoration: none;
+}
+
+.report-trigger{
+  color:#ff4444;
+  text-decoration:underline;
+}
+
 .share-trigger{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  min-height:48px; padding:10px 18px; border:2px solid var(--beitar-yellow); border-radius:12px;
-  background:var(--beitar-yellow); color:#111; font-size:1.08em; font-weight:900;
-  box-shadow:0 5px 16px rgba(252,227,0,.28); transition:transform .15s ease, box-shadow .15s ease;
-}
-.share-trigger:hover,.share-trigger:focus-visible{
-  transform:translateY(-2px); box-shadow:0 7px 20px rgba(252,227,0,.45);
-  outline:2px solid #fff; outline-offset:3px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:48px;
+  padding:10px 18px;
+  border:2px solid var(--beitar-yellow);
+  border-radius:12px;
+  background:var(--beitar-yellow);
+  color:#111;
+  font-size:1.08em;
+  font-weight:900;
+  box-shadow:0 5px 16px rgba(252,227,0,.28);
+  transition:transform .15s ease, box-shadow .15s ease;
 }
 
+.share-trigger:hover,.share-trigger:focus-visible{
+  transform:translateY(-2px);
+  box-shadow:0 7px 20px rgba(252,227,0,.45);
+  outline:2px solid #fff;
+  outline-offset:3px;
+}
+
+/* הכפתור הראשי וכפתורי תוצאות החיפוש */
 .scam-guide-trigger {
-  display:flex; align-items:center; justify-content:center; gap:12px;
-  align-self:center; flex:0 0 auto; position:relative;
-  width:min(520px,calc(100% - 30px)); min-height:64px;
-  margin:0 15px 12px; padding:14px 22px;
-  background:#080808; color:var(--beitar-yellow);
-  border:2px solid var(--beitar-yellow); border-radius:18px;
-  font:900 1.12em 'Heebo',sans-serif; cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  align-self:center;
+  flex:0 0 auto;
+  position:relative;
+  width:min(520px,calc(100% - 30px));
+  min-height:64px;
+  margin:0 15px 12px;
+  padding:14px 22px;
+  background:#080808;
+  color:var(--beitar-yellow);
+  border:2px solid var(--beitar-yellow);
+  border-radius:18px;
+  font:900 1.12em 'Heebo',sans-serif;
+  cursor:pointer;
   box-shadow:0 0 12px rgba(252,227,0,.14);
   transition:transform .15s ease,box-shadow .15s ease;
   animation:guideButtonPress 2.8s ease-in-out infinite;
 }
-.scam-guide-trigger:hover,.scam-guide-trigger:focus-visible { background:#181600; outline:2px solid var(--beitar-yellow); outline-offset:3px; transform:translateY(-2px); box-shadow:0 0 20px rgba(252,227,0,.38); }
-.guide-copy { flex:0 1 auto; }
-.guide-click-indicator { position:relative; display:grid; place-items:center; flex:0 0 38px; width:38px; height:40px; }
-.guide-click-indicator svg { width:34px; height:38px; overflow:visible; filter:drop-shadow(1px 2px 1px rgba(0,0,0,.38)); animation:guideCursorPress 2.8s ease-in-out infinite; transform-origin:35% 30%; }
-.guide-click-indicator::after { content:""; position:absolute; inset:8px; border:2px solid var(--beitar-yellow); border-radius:50%; opacity:0; animation:guideClickRipple 2.8s ease-out infinite; }
+
+.scam-guide-trigger:hover,
+.scam-guide-trigger:focus-visible {
+  background:#181600;
+  outline:2px solid var(--beitar-yellow);
+  outline-offset:3px;
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(252,227,0,.38);
+}
+
+.guide-copy {
+  flex:0 1 auto;
+}
+
+.guide-click-indicator {
+  position:relative;
+  display:grid;
+  place-items:center;
+  flex:0 0 38px;
+  width:38px;
+  height:40px;
+}
+
+.guide-click-indicator svg {
+  width:34px;
+  height:38px;
+  overflow:visible;
+  filter:drop-shadow(1px 2px 1px rgba(0,0,0,.38));
+  animation:guideCursorPress 2.8s ease-in-out infinite;
+  transform-origin:35% 30%;
+}
+
+.guide-click-indicator::after {
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:2px solid var(--beitar-yellow);
+  border-radius:50%;
+  opacity:0;
+  animation:guideClickRipple 2.8s ease-out infinite;
+}
+
+/* עיצוב כפתור המדריך שמופיע בתוך תוצאות החיפוש */
+.scam-guide-result-trigger {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  position:relative;
+  width:min(100%,360px);
+  min-height:54px;
+  margin-top:12px;
+  padding:10px 18px;
+  background:#080808;
+  color:var(--beitar-yellow);
+  border:2px solid var(--beitar-yellow);
+  border-radius:14px;
+  font:900 1em 'Heebo',sans-serif;
+  cursor:pointer;
+  box-shadow:0 0 12px rgba(252,227,0,.14);
+  transition:transform .15s ease,box-shadow .15s ease;
+  animation:guideButtonPress 2.8s ease-in-out infinite;
+}
+
+.scam-guide-result-trigger:hover,
+.scam-guide-result-trigger:focus-visible {
+  background:#181600;
+  outline:2px solid var(--beitar-yellow);
+  outline-offset:3px;
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(252,227,0,.38);
+}
+
+.scam-guide-result-trigger .guide-click-indicator {
+  flex:0 0 34px;
+  width:34px;
+  height:36px;
+}
+
+.scam-guide-result-trigger .guide-click-indicator svg {
+  width:30px;
+  height:34px;
+}
+
 @keyframes guideCursorPress {
-  0%,12% { opacity:0; transform:translate(-12px,-13px) scale(.82); }
-  26% { opacity:1; transform:translate(0,0) scale(1); }
-  34% { opacity:1; transform:translate(2px,4px) scale(.86); }
-  42%,70% { opacity:1; transform:translate(0,0) scale(1); }
-  82%,100% { opacity:0; transform:translate(-8px,-10px) scale(.9); }
+  0%,12% {
+    opacity:0;
+    transform:translate(-12px,-13px) scale(.82);
+  }
+  26% {
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
+  34% {
+    opacity:1;
+    transform:translate(2px,4px) scale(.86);
+  }
+  42%,70% {
+    opacity:1;
+    transform:translate(0,0) scale(1);
+  }
+  82%,100% {
+    opacity:0;
+    transform:translate(-8px,-10px) scale(.9);
+  }
 }
+
 @keyframes guideClickRipple {
-  0%,26% { opacity:0; transform:scale(.35); }
-  34% { opacity:.85; transform:scale(.7); }
-  54% { opacity:0; transform:scale(1.65); }
-  100% { opacity:0; transform:scale(1.65); }
+  0%,26% {
+    opacity:0;
+    transform:scale(.35);
+  }
+  34% {
+    opacity:.85;
+    transform:scale(.7);
+  }
+  54% {
+    opacity:0;
+    transform:scale(1.65);
+  }
+  100% {
+    opacity:0;
+    transform:scale(1.65);
+  }
 }
+
 @keyframes guideButtonPress {
-  0%,30%,52%,100% { transform:scale(1); box-shadow:0 0 12px rgba(252,227,0,.14); }
-  36%,44% { transform:scale(.985); box-shadow:0 0 18px rgba(252,227,0,.5),0 0 0 5px rgba(252,227,0,.16); }
+  0%,30%,52%,100% {
+    transform:scale(1);
+    box-shadow:0 0 12px rgba(252,227,0,.14);
+  }
+  36%,44% {
+    transform:scale(.985);
+    box-shadow:0 0 18px rgba(252,227,0,.5),0 0 0 5px rgba(252,227,0,.16);
+  }
 }
+
 @media(prefers-reduced-motion:reduce) {
-  .scam-guide-trigger,.guide-click-indicator svg,.guide-click-indicator::after { animation:none; }
-  .guide-click-indicator svg { opacity:1; }
+  .scam-guide-trigger,
+  .scam-guide-result-trigger,
+  .guide-click-indicator svg,
+  .guide-click-indicator::after {
+    animation:none;
+  }
+
+  .guide-click-indicator svg {
+    opacity:1;
+  }
 }
- .scam-guide-result-trigger {
-  display:inline-block; margin-top:12px; padding:10px 16px;
-  border:1px solid var(--beitar-yellow); border-radius:10px;
-  background:#080808; color:var(--beitar-yellow);
-  font:800 1em 'Heebo',sans-serif; cursor:pointer;
+
+.scam-guide-modal[hidden] {
+  display:none;
 }
-.scam-guide-result-trigger:hover,.scam-guide-result-trigger:focus-visible {
-  background:#242000; outline:2px solid var(--beitar-yellow); outline-offset:2px;
-}
-.scam-guide-modal[hidden] { display:none; }
+
 .scam-guide-modal {
-  position:fixed; inset:0; z-index:10000; display:flex;
-  align-items:center; justify-content:center; padding:16px;
-  background:rgba(0,0,0,.82); direction:rtl; overflow:hidden;
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:rgba(0,0,0,.82);
+  direction:rtl;
+  overflow:hidden;
 }
+
 .scam-guide-content {
-  position:relative; width:min(100%,720px); max-height:calc(100vh - 32px);
-  overflow-y:auto; overscroll-behavior:contain; background:#121212;
-  color:#f1f1f1; border:1px solid rgba(252,227,0,.75); border-radius:18px;
-  padding:24px; box-shadow:0 16px 50px rgba(0,0,0,.7); line-height:1.75;
+  position:relative;
+  width:min(100%,720px);
+  max-height:calc(100vh - 32px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  background:#121212;
+  color:#f1f1f1;
+  border:1px solid rgba(252,227,0,.75);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 16px 50px rgba(0,0,0,.7);
+  line-height:1.75;
 }
-.scam-guide-content h2,.scam-guide-content h3 { color:var(--beitar-yellow); line-height:1.4; }
-.scam-guide-content h2 { margin:0 44px 12px 0; font-size:1.55em; }
-.scam-guide-content h3 { margin:0 0 8px; font-size:1.1em; }
-.scam-guide-content p { margin:0 0 12px; }
+
+.scam-guide-content h2,
+.scam-guide-content h3 {
+  color:var(--beitar-yellow);
+  line-height:1.4;
+}
+
+.scam-guide-content h2 {
+  margin:0 44px 12px 0;
+  font-size:1.55em;
+}
+
+.scam-guide-content h3 {
+  margin:0 0 8px;
+  font-size:1.1em;
+}
+
+.scam-guide-content p {
+  margin:0 0 12px;
+}
+
 .scam-guide-close {
-  position:absolute; top:14px; right:14px; width:38px; height:38px;
-  display:grid; place-items:center; border:1px solid #777; border-radius:10px;
-  background:#222; color:white; font-size:1.35em; cursor:pointer;
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border:1px solid #777;
+  border-radius:10px;
+  background:#222;
+  color:white;
+  font-size:1.35em;
+  cursor:pointer;
 }
-.scam-guide-close:focus-visible,.scam-guide-ticket:focus-visible { outline:2px solid white; outline-offset:3px; }
-.scam-guide-item { padding:14px 0 4px; border-top:1px solid #373737; }
-.scam-guide-item strong { color:var(--beitar-yellow); }
-.scam-guide-warning { margin-top:16px; padding:16px; background:#282400; border:1px solid var(--beitar-yellow); border-radius:12px; }
-.scam-guide-ticket-box { margin-top:16px; padding:16px; background:#1c1c1c; border:1px solid #5a5200; border-radius:12px; }
-.scam-guide-ticket { display:inline-block; margin-top:8px; padding:10px 16px; border-radius:9px; background:var(--beitar-yellow); color:#111; font-weight:900; text-decoration:none; }
+
+.scam-guide-close:focus-visible,
+.scam-guide-ticket:focus-visible {
+  outline:2px solid white;
+  outline-offset:3px;
+}
+
+.scam-guide-item {
+  padding:14px 0 4px;
+  border-top:1px solid #373737;
+}
+
+.scam-guide-item strong {
+  color:var(--beitar-yellow);
+}
+
+.scam-guide-warning {
+  margin-top:16px;
+  padding:16px;
+  background:#282400;
+  border:1px solid var(--beitar-yellow);
+  border-radius:12px;
+}
+
+.scam-guide-ticket-box {
+  margin-top:16px;
+  padding:16px;
+  background:#1c1c1c;
+  border:1px solid #5a5200;
+  border-radius:12px;
+}
+
+.scam-guide-ticket {
+  display:inline-block;
+  margin-top:8px;
+  padding:10px 16px;
+  border-radius:9px;
+  background:var(--beitar-yellow);
+  color:#111;
+  font-weight:900;
+  text-decoration:none;
+}
+
 @media(max-width:600px) {
-  .scam-guide-trigger { width:calc(100% - 30px); min-height:46px; }
-  .scam-guide-modal { padding:8px; }
-  .scam-guide-content { max-height:calc(100vh - 16px); padding:20px 16px; border-radius:14px; }
-  .scam-guide-content h2 { font-size:1.3em; }
+  .scam-guide-trigger {
+    width:calc(100% - 30px);
+    min-height:46px;
+  }
+
+  .scam-guide-modal {
+    padding:8px;
+  }
+
+  .scam-guide-content {
+    max-height:calc(100vh - 16px);
+    padding:20px 16px;
+    border-radius:14px;
+  }
+
+  .scam-guide-content h2 {
+    font-size:1.3em;
+  }
 }
 
-#reportSection{ display:none; height:100%; padding: 15px; text-align: center; overflow-y: auto; }
-.number-list-section{ display:none; flex-direction:column; height:100%; min-height:0; padding:15px; text-align:right; }
-.number-list-section h2{ color:var(--beitar-yellow); text-align:center; margin:8px 0 4px; }
-.number-list-status{ text-align:center; margin-bottom:10px; }
-#numberListItems{ flex:1; min-height:0; overflow-y:auto; margin:0; padding:0 8px 8px; direction:rtl; list-style:none; }
-#numberListItems li{ display:flex; align-items:baseline; gap:10px; padding:7px 4px; border-bottom:1px solid #333; font-size:1.05em; direction:rtl; }
-.number-list-index{ flex:0 0 auto; min-width:4.5ch; direction:ltr; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
-.number-list-phone{ direction:ltr; unicode-bidi:isolate; }
+#reportSection{
+  display:none;
+  height:100%;
+  padding:15px;
+  text-align:center;
+  overflow-y:auto;
+}
+
+.number-list-section{
+  display:none;
+  flex-direction:column;
+  height:100%;
+  min-height:0;
+  padding:15px;
+  text-align:right;
+}
+
+.number-list-section h2{
+  color:var(--beitar-yellow);
+  text-align:center;
+  margin:8px 0 4px;
+}
+
+.number-list-status{
+  text-align:center;
+  margin-bottom:10px;
+}
+
+#numberListItems{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  margin:0;
+  padding:0 8px 8px;
+  direction:rtl;
+  list-style:none;
+}
+
+#numberListItems li{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  padding:7px 4px;
+  border-bottom:1px solid #333;
+  font-size:1.05em;
+  direction:rtl;
+}
+
+.number-list-index{
+  flex:0 0 auto;
+  min-width:4.5ch;
+  direction:ltr;
+  text-align:right;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+.number-list-phone{
+  direction:ltr;
+  unicode-bidi:isolate;
+}
+
 .report-notice-card {
-  background: #222;
-  border: 2px solid var(--beitar-yellow);
-  border-radius: 16px;
-  padding: 25px 20px;
-  margin-top: 15px;
-  text-align: right;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  background:#222;
+  border:2px solid var(--beitar-yellow);
+  border-radius:16px;
+  padding:25px 20px;
+  margin-top:15px;
+  text-align:right;
+  box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
+
 .report-notice-card h2 {
-  color: var(--beitar-yellow);
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.5em;
+  color:var(--beitar-yellow);
+  text-align:center;
+  margin-bottom:20px;
+  font-size:1.5em;
 }
+
 .report-list {
-  list-style: none;
-  font-size: 1.1em;
-  line-height: 1.8;
-  margin-bottom: 25px;
+  list-style:none;
+  font-size:1.1em;
+  line-height:1.8;
+  margin-bottom:25px;
 }
+
 .report-list li {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
+
 .report-warning-footer {
-  color: #ff4444;
-  font-weight: bold;
-  text-align: center;
-  font-size: 0.95em;
-  margin-top: 15px;
-  border-top: 1px solid #444;
-  padding-top: 12px;
+  color:#ff4444;
+  font-weight:bold;
+  text-align:center;
+  font-size:0.95em;
+  margin-top:15px;
+  border-top:1px solid #444;
+  padding-top:12px;
 }
+
 .continue-btn {
-  background: var(--beitar-yellow);
-  color: black;
-  border: none;
-  padding: 14px 24px;
-  font-size: 1.1em;
-  font-weight: 900;
-  border-radius: 12px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 20px;
-  transition: transform 0.2s;
+  background:var(--beitar-yellow);
+  color:black;
+  border:none;
+  padding:14px 24px;
+  font-size:1.1em;
+  font-weight:900;
+  border-radius:12px;
+  cursor:pointer;
+  width:100%;
+  margin-top:20px;
+  transition:transform 0.2s;
 }
+
 .continue-btn:hover {
-  transform: scale(1.02);
+  transform:scale(1.02);
 }
 
-iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; background: transparent; }
-.back-btn{ background:#000; color:var(--beitar-yellow); padding:12px; text-align:center; cursor:pointer; font-weight:bold; border-radius:8px; margin-bottom: 10px; border: 1px solid var(--beitar-yellow); } 
+iframe{
+  width:100%;
+  height:calc(100% - 50px);
+  border:none;
+  display:none;
+  background:transparent;
+}
 
-.checking::after{ display:inline-block; animation:dotsAnimation 1s steps(4,end) infinite; content:""; }
-@keyframes dotsAnimation{0%{content:"";}25%{content:".";}50%{content:"..";}75%{content:"...";}100%{content:"";}}
+.back-btn{
+  background:#000;
+  color:var(--beitar-yellow);
+  padding:12px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
+  border-radius:8px;
+  margin-bottom:10px;
+  border:1px solid var(--beitar-yellow);
+}
+
+.checking::after{
+  display:inline-block;
+  animation:dotsAnimation 1s steps(4,end) infinite;
+  content:"";
+}
+
+@keyframes dotsAnimation{
+  0%{content:"";}
+  25%{content:".";}
+  50%{content:"..";}
+  75%{content:"...";}
+  100%{content:"";}
+}
 </style>
 </head>
-<body> 
+
+<body>
 
 <div id="splashScreen">
   <img src="Bodek1Oktzim.png" alt="Logo">
   <div class="loader"></div>
-</div> 
+</div>
 
 <div class="main-card">
   <div class="top-bar"></div>
+
   <div id="mainSection">
-    <div class="header"><h1>בודק עוקצים בית"ר</h1></div>
+    <div class="header">
+      <h1>בודק עוקצים בית"ר</h1>
+    </div>
+
     <button id="scamGuideOpen" class="scam-guide-trigger" type="button">
       <span class="guide-copy">לחצו כדי לדעת איך להיזהר מעוקצים</span>
       <span class="guide-click-indicator" aria-hidden="true">
@@ -353,6 +808,7 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
         </svg>
       </span>
     </button>
+
     <div class="chat-box" id="chatBox">
       <div class="message bot welcome-msg">
 <b><u>ברוכים הבאים לבודק עוקצים בית״ר✅</u></b>
@@ -362,28 +818,28 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
 <br><a href="./how-it-works.html" style="display:inline-block;margin-top:8px;color:#fce300;font-weight:700;text-decoration:underline">איך בדיקת המספרים עובדת?</a>
       </div>
     </div>
+
     <div class="input-container">
       <button id="enterBtn" type="button">בדוק</button>
       <input type="text" id="userInput" placeholder="הקלד מספר טלפון..." autocomplete="off">
       <button id="listBtn" type="button">רשימה</button>
     </div>
+
     <div class="actions">
       <span class="action-btn report-trigger" onclick="toggleReport(true)">⚠️ דווח על עוקץ</span>
       <span class="action-btn share-trigger" onclick="shareSite()">📣 שתפו עם חברים!</span>
     </div>
-  </div> 
+  </div>
 
   <div id="reportSection">
     <div class="back-btn" onclick="toggleReport(false)">✖ חזור למסך הבדיקה</div>
-    
-    <!-- מסך הנחיות לפני מעבר לטופס -->
+
     <div id="reportInstructions" class="report-notice-card">
       <h2>הנחיות לדיווח על עוקץ ⚠️</h2>
       <ul class="report-list">
         <li>📱 מספר הטלפון של העוקץ</li>
         <li>📸 הוכחה של העוקץ (תמונה / סרטון)</li>
         <li>💳 תמונה/אישור של ההעברה</li>
-        
       </ul>
       <div class="report-warning-footer">
         בלי הפרטים אלו לא נפרסם ולא נעלה את המספר למאגר.
@@ -391,97 +847,123 @@ iframe{ width:100%; height:calc(100% - 50px); border:none; display:none; backgro
       <button class="continue-btn" onclick="openReportForm()">המשך לטופס הדיווח ⬅️</button>
     </div>
 
-    <!-- טופס Tally החדש -->
     <iframe id="reportIframe" src="https://tally.so/r/LZrR0v"></iframe>
   </div>
+
   <section id="listSection" class="number-list-section" aria-labelledby="numberListTitle">
     <button id="listBackBtn" class="back-btn" type="button">✖ חזרה למסך הבדיקה</button>
     <h2 id="numberListTitle">📋 כל המספרים במאגר</h2>
     <p id="numberListStatus" class="number-list-status" aria-live="polite"></p>
     <ol id="numberListItems"></ol>
   </section>
-</div> 
+</div>
 
 <div id="scamGuideModal" class="scam-guide-modal" hidden>
   <section class="scam-guide-content" role="dialog" aria-modal="true" aria-labelledby="scamGuideTitle" tabindex="-1">
     <button id="scamGuideClose" class="scam-guide-close" type="button" aria-label="סגירת מדריך">×</button>
+
     <h2 id="scamGuideTitle">🛡️ איך נזהרים מעוקץ כרטיסים?</h2>
     <p><strong>בית״רים יקרים 💛🖤</strong></p>
     <p>לפני שקונים כרטיס למשחק מאדם פרטי, חשוב לעצור לרגע ולבדוק את מי שנמצא בצד השני. הנה כמה צעדים שיכולים לעזור לכם לזהות סימני אזהרה ולהקטין את הסיכון לעוקץ.</p>
 
-    <article class="scam-guide-item"><h3>1. 💸 היזהרו משיטות תשלום חשודות</h3>
+    <article class="scam-guide-item">
+      <h3>1. 💸 היזהרו משיטות תשלום חשודות</h3>
       <p>בדרך כלל, אחד מסימני האזהרה הוא כשהמוכר מבקש העברה בנקאית, קוד למשיכת כסף ללא כרטיס או שימוש באפליקציות לא מוכרות להעברת כספים.</p>
-      <p>אל תמסרו קודים ואל תעבירו כסף לפני שבדקתם היטב את אמינות העסקה. אם המוכר לוחץ עליכם לשלם במהירות או מסרב להשתמש בדרך תשלום בטוחה, עצרו ובדקו שוב.</p></article>
+      <p>אל תמסרו קודים ואל תעבירו כסף לפני שבדקתם היטב את אמינות העסקה. אם המוכר לוחץ עליכם לשלם במהירות או מסרב להשתמש בדרך תשלום בטוחה, עצרו ובדקו שוב.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>2. 🪪 בקשו אימות זהות</h3>
+    <article class="scam-guide-item">
+      <h3>2. 🪪 בקשו אימות זהות</h3>
       <p>חשוב לבקש מהמוכר לאמת את זהותו באמצעות תעודת זהות, רישיון נהיגה או אמצעי זיהוי מתאים אחר. אם הוא מתחמק שוב ושוב או ממציא תירוצים, זה סימן אזהרה.</p>
       <p>עם זאת, חשוב לזכור שגם תעודות זהות ורישיונות עלולים להיות מזויפים או שייכים לאדם אחר, ולכן האימות הזה אינו מבטיח שהמוכר אמין.</p>
-      <p>אם המוכר מסכים לאימות, שימו לב שהפרטים מתאימים לאדם שאיתו אתם מדברים. אל תסתמכו על מסמך בלבד — בדקו גם את שאר הסימנים.</p></article>
+      <p>אם המוכר מסכים לאימות, שימו לב שהפרטים מתאימים לאדם שאיתו אתם מדברים. אל תסתמכו על מסמך בלבד — בדקו גם את שאר הסימנים.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>3. 📸 בקשו תמונה עדכנית של תעודת הזהות</h3>
+    <article class="scam-guide-item">
+      <h3>3. 📸 בקשו תמונה עדכנית של תעודת הזהות</h3>
       <p>בקשו מהמוכר לצלם באותו רגע תמונה שבה הוא מחזיק את תעודת הזהות. אל תסתמכו על תמונה שמורה שהוא שולח, כי ייתכן שהיא שייכת למישהו אחר.</p>
-      <p><strong>חשוב:</strong> גם תמונה עדכנית אינה מבטיחה שהמוכר אמין — עוקצים עלולים להשתמש בתעודה של אדם אחר. אל תפרסמו תעודת זהות או פרטים רגישים בפומבי.</p></article>
+      <p><strong>חשוב:</strong> גם תמונה עדכנית אינה מבטיחה שהמוכר אמין — עוקצים עלולים להשתמש בתעודה של אדם אחר. אל תפרסמו תעודת זהות או פרטים רגישים בפומבי.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>4. 📱 בדקו את פרופיל הפייסבוק</h3>
+    <article class="scam-guide-item">
+      <h3>4. 📱 בדקו את פרופיל הפייסבוק</h3>
       <p>אם המוכר פנה אליכם דרך פייסבוק, או שאתם פניתם אליו דרך פייסבוק, בקשו מהמוכר לאשר אתכם כחברים ובדקו היטב את הפרופיל שלו.</p>
-      <p>שימו לב לדברים הבאים:</p><ul><li>האם יש בפרופיל פעילות לאורך זמן?</li><li>האם יש חברים, תגובות, לייקים ותמונות שנראים אמיתיים?</li><li>האם הפרופיל נראה פעיל ואמין, או שהוא חדש ודל בפעילות?</li></ul>
+      <p>שימו לב לדברים הבאים:</p>
+      <ul>
+        <li>האם יש בפרופיל פעילות לאורך זמן?</li>
+        <li>האם יש חברים, תגובות, לייקים ותמונות שנראים אמיתיים?</li>
+        <li>האם הפרופיל נראה פעיל ואמין, או שהוא חדש ודל בפעילות?</li>
+      </ul>
       <p>אם מדובר בפרופיל עם מעט מאוד חברים, כמעט בלי פעילות או עם פרטים חשודים, כדאי להיזהר במיוחד.</p>
-      <p>חשוב לזכור שגם פרופיל שנראה אמין יכול להיות מזויף או פרוץ, ולכן הבדיקה הזאת לבדה אינה מספיקה.</p></article>
+      <p>חשוב לזכור שגם פרופיל שנראה אמין יכול להיות מזויף או פרוץ, ולכן הבדיקה הזאת לבדה אינה מספיקה.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>5. 🔎 בדקו את מספר הטלפון ב-Me וב-Truecaller</h3>
+    <article class="scam-guide-item">
+      <h3>5. 🔎 בדקו את מספר הטלפון ב-Me וב-Truecaller</h3>
       <p>אפשר לבדוק את מספר הטלפון של המוכר באפליקציות Me ו-Truecaller, ולראות איזה שם מופיע עבור המספר.</p>
       <p>השוו את השם שמופיע באפליקציות לשם בפרופיל הפייסבוק ולפרטים שהמוכר מסר לכם. אם מופיע שם שונה או שיש חוסר התאמה, שאלו שאלות ובדקו לפני שאתם ממשיכים בעסקה.</p>
-      <p>חשוב לזכור שהשמות באפליקציות האלה מבוססים על מידע שעשוי להיות לא מדויק, ולכן הם יכולים לעזור בבדיקה אך אינם הוכחה לזהות האמיתית של האדם.</p></article>
+      <p>חשוב לזכור שהשמות באפליקציות האלה מבוססים על מידע שעשוי להיות לא מדויק, ולכן הם יכולים לעזור בבדיקה אך אינם הוכחה לזהות האמיתית של האדם.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>6. 💬 אמתו את המוכר דרך רשת חברתית נוספת</h3>
+    <article class="scam-guide-item">
+      <h3>6. 💬 אמתו את המוכר דרך רשת חברתית נוספת</h3>
       <p>אם אתם מדברים עם המוכר בוואטסאפ, בקשו ממנו קישור לפרופיל הפייסבוק או האינסטגרם שלו.</p>
       <p>לאחר מכן, שלחו לו הודעה גם דרך אותו פרופיל ובקשו שיענה לכם שם ויאשר שהוא אכן האדם שמדבר אתכם בוואטסאפ ומוכר את הכרטיס.</p>
-      <p>זה יכול להוסיף שכבת אימות ולעזור לבדוק שהחשבונות קשורים לאותו אדם. עם זאת, גם חשבונות ברשתות החברתיות עלולים להיות מזויפים או פרוצים, ולכן אל תסתמכו על הבדיקה הזאת בלבד.</p></article>
+      <p>זה יכול להוסיף שכבת אימות ולעזור לבדוק שהחשבונות קשורים לאותו אדם. עם זאת, גם חשבונות ברשתות החברתיות עלולים להיות מזויפים או פרוצים, ולכן אל תסתמכו על הבדיקה הזאת בלבד.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>7. 📞 דברו עם המוכר</h3>
+    <article class="scam-guide-item">
+      <h3>7. 📞 דברו עם המוכר</h3>
       <p>מומלץ לנהל שיחה עם המוכר לפני העברת הכסף, לשאול שאלות על הכרטיס ולראות איך הוא מתנהל.</p>
       <p>שימו לב אם הוא סבלני, עונה לעניין ומוכן להסביר, או שהוא בעיקר לוחץ עליכם להעביר כסף במהירות ומתחמק משאלות.</p>
-      <p>אם המוכר מסרב לדבר או מתחמק מכל ניסיון לברר פרטים, זה עשוי לעורר חשד. מצד שני, גם שיחה שמתנהלת בצורה טובה אינה מבטיחה שהעסקה אמינה.</p></article>
+      <p>אם המוכר מסרב לדבר או מתחמק מכל ניסיון לברר פרטים, זה עשוי לעורר חשד. מצד שני, גם שיחה שמתנהלת בצורה טובה אינה מבטיחה שהעסקה אמינה.</p>
+    </article>
 
-    <article class="scam-guide-item"><h3>8. 📱 שמרו תיעוד ודווחו</h3>
+    <article class="scam-guide-item">
+      <h3>8. 📱 שמרו תיעוד ודווחו</h3>
       <p>שמרו בצורה מאובטחת את פרטי השיחה והעסקה, כמו שם ומספר טלפון, ותעדו את ההתכתבויות בצילומי מסך.</p>
       <p>אם נפלתם קורבן לעוקץ, שמרו את הראיות ודווחו לנו דרך האתר. שלחו את הפרטים וההוכחות באמצעות טופס הדיווח, כדי שנוכל לבדוק את המקרה ולהזהיר אוהדים אחרים.</p>
-      <p><strong>אל תפרסמו תעודות זהות מלאות או פרטים רגישים בפומבי.</strong></p></article>
+      <p><strong>אל תפרסמו תעודות זהות מלאות או פרטים רגישים בפומבי.</strong></p>
+    </article>
 
-    <aside class="scam-guide-warning"><h3>⚠️ חשוב לזכור!</h3>
+    <aside class="scam-guide-warning">
+      <h3>⚠️ חשוב לזכור!</h3>
       <p>יש הרבה שיטות לעוקץ כרטיסים, וכל הזמן ממציאים שיטות חדשות. אף בדיקה בודדת לא מבטיחה שהמוכר אמין, וגם כמה סימנים חיוביים אינם ערובה לבטיחות.</p>
-      <p><strong>אל תתביישו לבקש אימות, לשאול שאלות ולוותר על עסקה שמרגישה לכם חשודה. עדיף לפספס כרטיס מאשר להפסיד כסף!</strong></p></aside>
+      <p><strong>אל תתביישו לבקש אימות, לשאול שאלות ולוותר על עסקה שמרגישה לכם חשודה. עדיף לפספס כרטיס מאשר להפסיד כסף!</strong></p>
+    </aside>
 
-    <aside class="scam-guide-ticket-box"><h3>🎟️ רוצים לקנות או למכור בצורה מסודרת יותר?</h3>
+    <aside class="scam-guide-ticket-box">
+      <h3>🎟️ רוצים לקנות או למכור בצורה מסודרת יותר?</h3>
       <p>בית״רים יקרים, הכירו את TicketIL — פלטפורמה לקנייה ולמכירה של כרטיסים.</p>
       <p>לקונים: הרכישה כוללת TicketIL Protect, בכפוף לתנאי השירות, למקרים שבהם בעיה מונעת כניסה לאירוע.</p>
       <p>למוכרים: אפשר להעלות כרטיס בצורה מסודרת, בלי לנהל את כל התהליך בהודעות ובהעברות פרטיות.</p>
-      <a class="scam-guide-ticket" href="https://www.ticketil.com/teams/soccer-beitar-jerusalem" target="_blank" rel="noopener noreferrer"> לאתר </a>
+      <a class="scam-guide-ticket" href="https://www.ticketil.com/teams/soccer-beitar-jerusalem" target="_blank" rel="noopener noreferrer">לאתר</a>
     </aside>
   </section>
 </div>
 
 <script>
 const sheetURL = 'https://docs.google.com/spreadsheets/d/18RfRhdFg1m_lNZecRXl9rLwaxRto_VtlkDjjI5B2gL4/gviz/tq?tqx=out:csv';
-let phoneList = []; 
+let phoneList = [];
 
 async function loadDatabase() {
   try {
     const response = await fetch(sheetURL);
     const data = await response.text();
+
     phoneList = data.split(/\r?\n/)
-                   .map(num => num.replace(/[",]/g, "").trim())
-                   .filter(num => num.length >= 3);
+      .map(num => num.replace(/[",]/g, "").trim())
+      .filter(num => num.length >= 3);
   } catch (error) {
     console.error("Error loading database:", error);
   }
 }
 
-function toggleReport(show){ 
-  document.getElementById('reportSection').style.display = show ? 'block' : 'none'; 
-  document.getElementById('mainSection').style.display = show ? 'none' : 'block'; 
+function toggleReport(show){
+  document.getElementById('reportSection').style.display = show ? 'block' : 'none';
+  document.getElementById('mainSection').style.display = show ? 'none' : 'block';
   document.getElementById('listSection').style.display = 'none';
-  
+
   if(!show) {
     document.getElementById('reportInstructions').style.display = 'block';
     document.getElementById('reportIframe').style.display = 'none';
@@ -496,29 +978,37 @@ function openReportForm(){
 function showNumberList(){
   document.getElementById('mainSection').style.display = 'none';
   document.getElementById('reportSection').style.display = 'none';
+
   const section = document.getElementById('listSection');
   const list = document.getElementById('numberListItems');
   const status = document.getElementById('numberListStatus');
   const numbers = getSortedList();
+
   list.replaceChildren();
+
   if(numbers.length === 0){
     status.textContent = 'המאגר עדיין נטען או אינו זמין כרגע. נסו שוב בעוד רגע.';
   } else {
     status.textContent = `במאגר ${numbers.length} מספרים:`;
+
     numbers.forEach((number, index) => {
       const item = document.createElement('li');
+
       const rowNumber = document.createElement('span');
       rowNumber.className = 'number-list-index';
       rowNumber.textContent = `${index + 1}.`;
       rowNumber.setAttribute('aria-hidden', 'true');
+
       const phoneNumber = document.createElement('span');
       phoneNumber.className = 'number-list-phone';
       phoneNumber.dir = 'ltr';
       phoneNumber.textContent = number;
+
       item.append(rowNumber, phoneNumber);
       list.appendChild(item);
     });
   }
+
   section.style.display = 'flex';
 }
 
@@ -528,9 +1018,13 @@ function closeNumberList(){
 }
 
 function shareSite(){
-  const shareMessage = 'לפני שקונים — בודקים ⚠️\n\nבדיקת מספר טלפון חשוד בבודק עוקצים בית״ר.\nחפשו מספר באתר.\n\nנמצאה התאמה? המספר 100% עוקץ — לא לקנות ממנו.\n\nהמספר לא נמצא? זה לא אומר שהוא לא עוקץ. תמיד תהיו זהירים.\n\n🔗 https://bodekoktzim.github.io/Bodek1Oktzim/';
+  const shareMessage = 'לפני שקונים — בודקים ⚠️\n\nבדיקת מספר טלפון חשוד בבודק עוקצים בית״ר.\nחפשו מספר באתר.\n\nנמצאה התאמה? המספר מופיע במאגר הדיווחים — בדקו היטב לפני עסקה.\n\nהמספר לא נמצא? זה לא אומר שהוא לא עוקץ. תמיד תהיו זהירים.\n\n🔗 https://bodekoktzim.github.io/Bodek1Oktzim/';
+
   if(navigator.share){
-    navigator.share({ title:'בדיקת מספר טלפון חשוד | בודק עוקצים בית״ר', text:shareMessage }).catch(error=>{
+    navigator.share({
+      title:'בדיקת מספר טלפון חשוד | בודק עוקצים בית״ר',
+      text:shareMessage
+    }).catch(error=>{
       if(error.name !== 'AbortError') console.error('Share failed:', error);
     });
   } else {
@@ -540,38 +1034,66 @@ function shareSite(){
   }
 }
 
+/* חלון מדריך העוקצים */
 const scamGuideModal = document.getElementById('scamGuideModal');
 const scamGuideDialog = scamGuideModal.querySelector('.scam-guide-content');
 const scamGuideClose = document.getElementById('scamGuideClose');
+
 let scamGuidePreviousFocus = null;
+
 function closeScamGuide(){
   if(scamGuideModal.hidden) return;
+
   scamGuideModal.hidden = true;
   document.body.style.overflow = '';
+
   if(scamGuidePreviousFocus) scamGuidePreviousFocus.focus();
 }
+
 function openScamGuide(trigger = document.activeElement){
   scamGuidePreviousFocus = trigger;
   scamGuideModal.hidden = false;
   document.body.style.overflow = 'hidden';
   scamGuideClose.focus();
 }
+
 document.getElementById('scamGuideOpen').addEventListener('click', () => openScamGuide());
-// גם הכפתורים שמופיעים בתוצאות החיפוש פותחים את אותו חלון מדריך קיים.
+
+/* כל כפתורי תוצאות החיפוש פותחים את אותו חלון מדריך */
 document.getElementById('chatBox').addEventListener('click', event => {
   const guideButton = event.target.closest('.scam-guide-result-trigger');
-  if(guideButton) openScamGuide(guideButton);
+
+  if(guideButton) {
+    openScamGuide(guideButton);
+  }
 });
+
 scamGuideClose.addEventListener('click', closeScamGuide);
-scamGuideModal.addEventListener('click', event => { if(event.target === scamGuideModal) closeScamGuide(); });
+
+scamGuideModal.addEventListener('click', event => {
+  if(event.target === scamGuideModal) closeScamGuide();
+});
+
 document.addEventListener('keydown', event => {
   if(scamGuideModal.hidden) return;
-  if(event.key === 'Escape') { closeScamGuide(); return; }
+
+  if(event.key === 'Escape') {
+    closeScamGuide();
+    return;
+  }
+
   if(event.key === 'Tab') {
     const focusable = [...scamGuideDialog.querySelectorAll('button, a[href]')];
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if(event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-    else if(!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if(event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if(!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 });
 
@@ -579,84 +1101,155 @@ function getSortedList() {
   return [...phoneList].sort((a, b) => {
     const numA = a.replace(/\D/g, '');
     const numB = b.replace(/\D/g, '');
+
     return numA.localeCompare(numB, undefined, {numeric: true});
   });
 }
 
-function copyList(){ 
+function copyList(){
   const sorted = getSortedList();
-  navigator.clipboard.writeText("⚠️ מספרים שדווחו כחשודים במאגר:\nהתאמה מציינת הופעה ברשימה בלבד; היא אינה הוכחה לעוקץ או לזהות המשתמש.\n\n" + sorted.join('\n')).then(()=>alert("הרשימה הועתקה!"));
-} 
+
+  navigator.clipboard.writeText(
+    "⚠️ מספרים שדווחו כחשודים במאגר:\nהתאמה מציינת הופעה ברשימה בלבד; היא אינה הוכחה לעוקץ או לזהות המשתמש.\n\n" +
+    sorted.join('\n')
+  ).then(()=>alert("הרשימה הועתקה!"));
+}
 
 function addMessage(text,sender,showCopy=false){
-  const div=document.createElement("div"); div.className=`message ${sender}`; div.innerHTML=text;
-  if(showCopy){ const btn=document.createElement("button"); btn.className="copy-btn"; btn.innerText="📋 העתק רשימה"; btn.onclick=copyList; div.appendChild(btn); }
-  const cb=document.getElementById("chatBox"); cb.appendChild(div); cb.scrollTop=cb.scrollHeight; return div;
-} 
+  const div = document.createElement("div");
+  div.className = `message ${sender}`;
+  div.innerHTML = text;
+
+  if(showCopy){
+    const btn = document.createElement("button");
+    btn.className = "copy-btn";
+    btn.innerText = "📋 העתק רשימה";
+    btn.onclick = copyList;
+    div.appendChild(btn);
+  }
+
+  const cb = document.getElementById("chatBox");
+  cb.appendChild(div);
+  cb.scrollTop = cb.scrollHeight;
+
+  return div;
+}
+
+/* יצירת כפתור מדריך עם אותו אייקון ואנימציה של הכפתור הראשי */
+function createScamGuideButtonHTML(){
+  return `
+    <button type="button" class="scam-guide-result-trigger">
+      <span class="guide-copy">כיצד להיזהר מעוקצים</span>
+      <span class="guide-click-indicator" aria-hidden="true">
+        <svg viewBox="0 0 32 40" focusable="false">
+          <path d="M5 3v25l6-6 4.5 10 4.5-2-4.4-10H25L5 3z" fill="#fff" stroke="#111" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M23 5l3-3M27 11h4M20 1V0" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </button>
+  `;
+}
 
 async function handleInput(){
-  const input=document.getElementById("userInput"); const rawVal=input.value.trim(); if(!rawVal)return; addMessage(rawVal,"user"); input.value="";
-  const checkingMsg=addMessage("בודק","bot"); checkingMsg.classList.add("checking");
-  await new Promise(r=>setTimeout(r,600)); checkingMsg.remove();
+  const input = document.getElementById("userInput");
+  const rawVal = input.value.trim();
 
-  if(rawVal==="רשימה"){ 
+  if(!rawVal) return;
+
+  addMessage(rawVal,"user");
+  input.value = "";
+
+  const checkingMsg = addMessage("בודק","bot");
+  checkingMsg.classList.add("checking");
+
+  await new Promise(r=>setTimeout(r,600));
+  checkingMsg.remove();
+
+  if(rawVal === "רשימה"){
     if(phoneList.length === 0) {
-       addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
+      addMessage("המערכת עדיין בטעינה, אנא נסו שוב בעוד רגע.", "bot");
     } else {
-       addMessage("📊 מספרים שדווחו כחשודים במאגר ("+phoneList.length+"):\n\n" + getSortedList().join('\n'), "bot", true);
+      addMessage(
+        "📊 מספרים שדווחו כחשודים במאגר ("+phoneList.length+"):\n\n" +
+        getSortedList().join('\n'),
+        "bot",
+        true
+      );
     }
-  }
-  else{
-    let cleanInput = rawVal.replace(/\D/g, ''); 
+  } else {
+    let cleanInput = rawVal.replace(/\D/g, '');
 
     if(cleanInput.startsWith('972')) {
-        cleanInput = '0' + cleanInput.slice(3);
-    } else if (cleanInput.length === 9 && !cleanInput.startsWith('0')) {
-        cleanInput = '0' + cleanInput;
+      cleanInput = '0' + cleanInput.slice(3);
+    } else if(cleanInput.length === 9 && !cleanInput.startsWith('0')) {
+      cleanInput = '0' + cleanInput;
     }
 
     if(cleanInput.length < 3) {
       addMessage("⚠️ החיפוש קצר מדי.","bot");
-    }
-    else {
-      const exactMatch = phoneList.find(p => p.replace(/\D/g, '') === cleanInput);
+    } else {
+      const exactMatch = phoneList.find(
+        p => p.replace(/\D/g, '') === cleanInput
+      );
 
       if(exactMatch) {
-         addMessage(`<strong>${cleanInput} עוקץ⚠️</strong><br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`, "bot");
-      } 
-      else {
-        const matchesScam = phoneList.filter(p => p.replace(/\D/g, '').includes(cleanInput));
-        if(matchesScam.length > 0){ 
+        addMessage(
+          `<strong>${cleanInput} עוקץ⚠️</strong><br>` +
+          createScamGuideButtonHTML(),
+          "bot"
+        );
+      } else {
+        const matchesScam = phoneList.filter(
+          p => p.replace(/\D/g, '').includes(cleanInput)
+        );
+
+        if(matchesScam.length > 0){
           let resultsHTML = `🚨 נמצאו התאמות במאגר הדיווחים עבור "${cleanInput}":<br><br>`;
+
           resultsHTML += matchesScam.map(p => {
-             return p.split(cleanInput).join(`<span class="highlight-match">${cleanInput}</span>`);
-          }).join('<br>'); 
-          resultsHTML += `<br><br><small>ההתאמות מציינות הופעה במאגר דיווחים בלבד; הן אינן הוכחה לעוקץ או לזהות המשתמש.</small><br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`;
-          addMessage(resultsHTML,"bot"); 
-        } 
-        else {
-          addMessage(`<strong>${cleanInput} אינו במסד הנתונים</strong><br><br><strong>חשוב לזכור:</strong> זה לא אומר שזה לא עוקץ או שבטוח לקנות ממנו. תמיד היו זהירים❗️<br><button type="button" class="scam-guide-result-trigger">כיצד להיזהר מעוקצים</button>`,"bot");
+            return p.split(cleanInput).join(
+              `<span class="highlight-match">${cleanInput}</span>`
+            );
+          }).join('<br>');
+
+          resultsHTML +=
+            `<br><br><small>ההתאמות מציינות הופעה במאגר דיווחים בלבד; הן אינן הוכחה לעוקץ או לזהות המשתמש.</small><br>` +
+            createScamGuideButtonHTML();
+
+          addMessage(resultsHTML,"bot");
+        } else {
+          addMessage(
+            `<strong>${cleanInput} אינו במסד הנתונים</strong><br><br>` +
+            `<strong>חשוב לזכור:</strong> זה לא אומר שזה לא עוקץ או שבטוח לקנות ממנו. תמיד היו זהירים❗️<br>` +
+            createScamGuideButtonHTML(),
+            "bot"
+          );
         }
       }
     }
   }
-} 
+}
 
-document.getElementById("enterBtn").onclick=handleInput;
-document.getElementById("userInput").onkeypress=e=>{if(e.key==='Enter')handleInput();}
+document.getElementById("enterBtn").onclick = handleInput;
+
+document.getElementById("userInput").onkeypress = e => {
+  if(e.key === 'Enter') handleInput();
+};
+
 document.getElementById('listBtn').addEventListener('click', showNumberList);
 document.getElementById('listBackBtn').addEventListener('click', closeNumberList);
 
 window.addEventListener("load", async () => {
   await loadDatabase();
-  setTimeout(() => { 
-    const splash = document.getElementById("splashScreen"); 
-    splash.style.opacity = "0"; 
-    setTimeout(() => splash.remove(), 600); 
-  }, 1200); 
+
+  setTimeout(() => {
+    const splash = document.getElementById("splashScreen");
+    splash.style.opacity = "0";
+    setTimeout(() => splash.remove(), 600);
+  }, 1200);
 });
 
-// רישום ה-Service Worker פעם אחת בלבד
+/* רישום ה-Service Worker פעם אחת בלבד */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
@@ -665,5 +1258,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
 </body>
 </html>
